@@ -2,11 +2,11 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.luckyjayacollection"
+	id = "com.tokomobile.aquaciashop"
 	version = "1.0.0">
-	<name>Lucky jaya collection</name>
+	<name>Aquacia Shop</name>
 	<description>
-	Lucky jaya collection by Novatama Infomedia.
+	Aquacia Shop by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile
