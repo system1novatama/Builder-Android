@@ -2,11 +2,11 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.aquaciashop"
+	id = "com.tokomobile.ellaufairashop"
 	version = "1.0.0">
-	<name>Aquacia Shop</name>
+	<name>Ella Ufaira Shop</name>
 	<description>
-	Aquacia Shop by Novatama Infomedia.
+	Ella Ufaira Shop by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile
