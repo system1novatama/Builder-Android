@@ -1,12 +1,12 @@
 
-	var shop_name = "Poppulady"; // NAMA TOKO ONLINE
-	var domain = "http://poppulady.tokomobile.link/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "HDM Collection"; // NAMA TOKO ONLINE
+	var domain = "http://hdm-collection.com"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Poppulady"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "359f91fa827a388154f6259be0d6e4c4"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/HDMCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "d6b9f41a4fd874a84b089332ddcce756"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
