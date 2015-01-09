@@ -1,6 +1,6 @@
 
 	var shop_name = "HDM Collection"; // NAMA TOKO ONLINE
-	var domain = "http://hdm-collection.com"; // DOMAIN URL ADMIN
+	var domain = "http://hdm-collection.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
