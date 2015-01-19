@@ -1,12 +1,12 @@
 
-	var shop_name = "Zoel Collection"; // NAMA TOKO ONLINE
-	var domain = "http://zoel-collection-onlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Shabira Grosir"; // NAMA TOKO ONLINE
+	var domain = "http://shabiragrosir.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ZoelCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "1158388e8375892e1ee7dd7a5296d3fa"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/ShabiraGrosir"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "8e50798f5aa6ae11ac87198faa778dcc"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
