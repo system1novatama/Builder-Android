@@ -1,12 +1,12 @@
 
-	var shop_name = "Valen Online shop"; // NAMA TOKO ONLINE
-	var domain = "http://valenonlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "LUCKY SHOP"; // NAMA TOKO ONLINE
+	var domain = "http://lucky-shop.tokomobile.link/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ValenOnlineshop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "f3baac819d6ce472fe8d86559401689b"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/LUCKYSHOP"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "c769c0e440469fa817a389d116807c6c"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
