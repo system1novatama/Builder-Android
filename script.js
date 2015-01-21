@@ -1,12 +1,12 @@
 
-	var shop_name = "LUCKY SHOP"; // NAMA TOKO ONLINE
-	var domain = "http://lucky-shop.tokomobile.link/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Fox Fashion"; // NAMA TOKO ONLINE
+	var domain = "http://foxfashiongrosir.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/LUCKYSHOP"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "c769c0e440469fa817a389d116807c6c"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/FoxFashion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "9be479731d5fdf9b472e1ff10d1ed6a2"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
