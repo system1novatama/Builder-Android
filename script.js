@@ -1,12 +1,12 @@
 
-	var shop_name = "Mrs-Han"; // NAMA TOKO ONLINE
-	var domain = "http://mrs-han.tokomobile.link/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Tika Collection"; // NAMA TOKO ONLINE
+	var domain = "http://tika-collection.tokomobile.link/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Mrs-Han"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "fdd07d2975198e092edf4a0f994e48d3"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/TikaCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "9c67c09d7fede70d29cf9de30309e8cd"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
