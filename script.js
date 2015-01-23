@@ -1,12 +1,12 @@
 
-	var shop_name = "Duta Shop"; // NAMA TOKO ONLINE
-	var domain = "http://dutajerseyshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "MVS Collection2"; // NAMA TOKO ONLINE
+	var domain = "http://mvs-collection2.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/DutaShop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "e26e4373847da2c668af973d52462231"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/MVSCollection2"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "98ebb5b4c88aff21fe8b368054a2720b"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
