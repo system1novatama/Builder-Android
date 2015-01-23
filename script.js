@@ -1,12 +1,12 @@
 
-	var shop_name = "Tika Collection"; // NAMA TOKO ONLINE
-	var domain = "http://tika-collection.tokomobile.link/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Duta Shop"; // NAMA TOKO ONLINE
+	var domain = "http://dutajerseyshop.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/TikaCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "9c67c09d7fede70d29cf9de30309e8cd"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/DutaShop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "e26e4373847da2c668af973d52462231"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
