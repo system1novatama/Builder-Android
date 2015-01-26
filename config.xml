@@ -2,11 +2,11 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.dutashop"
+	id = "com.tokomobile.miekeonlineshop"
 	version = "1.0.0">
-	<name>Duta Shop</name>
+	<name>Mieke Online Shop</name>
 	<description>
-	Duta Shop by Novatama Infomedia.
+	Mieke Online Shop by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile
