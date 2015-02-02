@@ -2,11 +2,11 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.ikacollection"
+	id = "com.tokomobile.happyriccicollection"
 	version = "1.0.0">
-	<name>Ika Collection</name>
+	<name>Happy Ricci Collection</name>
 	<description>
-	Ika Collection by Novatama Infomedia.
+	Happy Ricci Collection by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile

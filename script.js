@@ -1,12 +1,12 @@
 
-	var shop_name = "Ika Collection"; // NAMA TOKO ONLINE
-	var domain = "http://ika-collection.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Happy Ricci Collection"; // NAMA TOKO ONLINE
+	var domain = "http://happyricci.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/IkaCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "455492ec8921ed661f39760b7890a626"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/HappyRicciCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "e8d9a3c7d15189efe5e409c334b9f629"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
