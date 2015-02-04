@@ -1,12 +1,12 @@
 
-	var shop_name = "Mrs Han"; // NAMA TOKO ONLINE
-	var domain = "http://mrs-han.toko-mobile.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Hijaber Premium Boutique"; // NAMA TOKO ONLINE
+	var domain = "http://hijaberpremium.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Mrs-Han"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "6e61df1a066cc22f94c1c81987fe9526"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/HijaberPremiumBoutique"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "d18c94aecae6e2167717d56ee2e600d4"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();

@@ -2,11 +2,11 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.mrshan"
+	id = "com.tokomobile.hijaberpremiumboutique"
 	version = "1.0.0">
-	<name>Mrs Han</name>
+	<name>Hijaber Premium Boutique</name>
 	<description>
-	Mrs Han by Novatama Infomedia.
+	Hijaber Premium Boutique by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile
