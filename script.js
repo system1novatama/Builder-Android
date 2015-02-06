@@ -1,11 +1,11 @@
 
-	var shop_name = "Tykhe Store"; // NAMA TOKO ONLINE
+	var shop_name = "BSO"; // NAMA TOKO ONLINE
 	var domain = "http://tykhe-store.toko-mobile.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Tykhe-Store"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var dir_image = "Pictures/BSO"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
 	var token = "f878729157be2ac8d686bfca35f38d32"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
