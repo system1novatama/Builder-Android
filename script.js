@@ -870,8 +870,9 @@
 						
 						if(data.status == 'Success')
 						{
-							window.location = "#page_detail";
+							//window.location = "#page_detail";
 							alert("Produk telah dipesan");
+							$.mobile.loading( "hide" );
 						}
 						else
 						{
@@ -903,6 +904,8 @@
 			alert("Masukkan jumlah pesanan!");
 			 $.mobile.loading( "hide" );
 		}
+		
+		 
 			
 	});	
 	
