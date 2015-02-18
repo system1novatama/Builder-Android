@@ -1,12 +1,12 @@
 
-	var shop_name = "SHIINE ONLINESHOP"; // NAMA TOKO ONLINE
-	var domain = "http://shine-onlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Labelle Design"; // NAMA TOKO ONLINE
+	var domain = "http://foxfashiongrosir.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/SHIINEONLINESHOP"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "c0394b25fb5a4f458c3efed2448eda7f"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/LabelleDesign"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "9be479731d5fdf9b472e1ff10d1ed6a2"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
@@ -870,9 +870,8 @@
 						
 						if(data.status == 'Success')
 						{
-							//window.location = "#page_detail";
+							window.location = "#page_dashboard";
 							alert("Produk telah dipesan");
-							$.mobile.loading( "hide" );
 						}
 						else
 						{
@@ -904,8 +903,6 @@
 			alert("Masukkan jumlah pesanan!");
 			 $.mobile.loading( "hide" );
 		}
-		
-		 
 			
 	});	
 	
