@@ -2,11 +2,11 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.labelledesign"
+	id = "com.tokomobile.tokomobiledemo"
 	version = "1.0.0">
-	<name>Labelle Design</name>
+	<name>Tokomobile Demo</name>
 	<description>
-	Labelle Design by Novatama Infomedia.
+	Tokomobile Demo by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile
