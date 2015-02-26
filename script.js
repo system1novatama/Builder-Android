@@ -7,7 +7,7 @@
 	var dir_image = "Pictures/TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
 	var token = "2897218422421213"; // ISI DENGAN TOKEN 
 	
-var cart_item_id = new Array();
+	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
 	var cart_item_price = new Array();
 	var cart_item_subtotal = new Array();
@@ -1457,7 +1457,8 @@ var cart_item_id = new Array();
 						$("#dropship1_weight").val(data_item.total_weight);
 						
 						$("#dropship1_provinsi").html("<option value='"+data_customer.prov_id+"'>"+data_customer.prov+"</option>");
-						$("#dropship1_to").val(data_customer.address);
+						$("#dropship1_to").val(data_customer.name);
+						$("#dropship1_address").val(data_customer.address);
 						$("#dropship1_kota").html("<option value='"+data_customer.kota_id+"'>"+data_customer.kota+"</option>");
 						
 						// GET SHIP RATES 
@@ -1720,6 +1721,9 @@ var cart_item_id = new Array();
 		var customer_id = $(".customer_id").html();
 		var dropship_from = $("#dropship1_from").val();
 		var dropship_to = $("#dropship1_to").val();
+		var dropship_address = $("#dropship1_address").val();
+		var dropship_phone = $("#dropship1_phone").val();
+		var dropship_kodepos = $("#dropship1_kodepos").val();
 		var dropship_prov = $("#dropship1_provinsi").val();
 		var dropship_kota = $("#dropship1_kota").val();
 		var dropship_weight = $("#dropship1_weight").val();
@@ -1764,7 +1768,7 @@ var cart_item_id = new Array();
 		else
 		{
 		
-			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from ,to: dropship_to, prov_id: dropship_prov, kota_id: dropship_kota , ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship},
+			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from ,to: dropship_to, prov_id: dropship_prov, kota_id: dropship_kota, address_recipient: dropship_address, phone_recipient:dropship_phone , postal_code:dropship_kodepos, ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship},
 			   function(data){
 			   
 			   /* check */
@@ -1804,6 +1808,9 @@ var cart_item_id = new Array();
 		var customer_id = $(".customer_id").html();
 		var dropship_from = $("#dropship2_from").val();
 		var dropship_to = $("#dropship2_to").val();
+		var dropship_address = $("#dropship2_address").val();
+		var dropship_phone = $("#dropship2_phone").val();
+		var dropship_kodepos = $("#dropship2_kodepos").val();
 		var dropship_prov = $("#dropship2_provinsi").val();
 		var dropship_kota = $("#dropship2_kota").val();
 		var dropship_weight = $("#dropship2_weight").val();
@@ -1846,7 +1853,7 @@ var cart_item_id = new Array();
 		}
 		else
 		{
-			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from ,to: dropship_to, prov_id: dropship_prov, kota_id: dropship_kota , ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship, tipe: order_tipe},
+			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from ,to: dropship_to, address_recipient: dropship_address, phone_recipient:dropship_phone, postal_code:dropship_kodepos ,prov_id: dropship_prov, kota_id: dropship_kota , ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship, tipe: order_tipe},
 			   function(data){
 			   
 			   /* check */
@@ -2543,3 +2550,4 @@ var cart_item_id = new Array();
             return false;
         }
    }
+	

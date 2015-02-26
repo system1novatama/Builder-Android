@@ -3,10 +3,10 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
 	id = "com.tokomobile.tokomobiledemo"
-	version = "1.0.0">
-	<name>Tokomobile Demo</name>
+	version = "2.0.0">
+	<name>Tokomobile 2.0</name>
 	<description>
-	Tokomobile Demo by Novatama Infomedia.
+	Tokomobile 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
 	Tokomobile
