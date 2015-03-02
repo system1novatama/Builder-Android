@@ -1,11 +1,11 @@
-	var shop_name = "Thior's OLS"; // NAMA TOKO ONLINE
-	var domain = "http://thiors-ols.toko-mobile.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "EPIC"; // NAMA TOKO ONLINE
+	var domain = "http://epicfashion.id/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ThiorsOLS"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "f7ef7d8852909950e24f0c1d78210074"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/EPIC"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "f5d17c6f4182a8690d3277680e3ee32d"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
