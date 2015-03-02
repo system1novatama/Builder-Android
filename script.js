@@ -1,10 +1,11 @@
-	var shop_name = "Tokomobile Demo"; // NAMA TOKO ONLINE
+
+	var shop_name = "Tokomobile Development"; // NAMA TOKO ONLINE
 	var domain = "http://tokomobile.co.id/demo/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var dir_image = "Pictures/tokomobile"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
 	var token = "2897218422421213"; // ISI DENGAN TOKEN 
 	
 	var cart_item_id = new Array();
@@ -257,6 +258,8 @@
 	
 	$( document ).on( "change", "#register_provinsi", function() {
 	
+		$.mobile.loading( "show" );
+	
 		var prov_id = $(this).val();
 		
 		if(prov_id != "")
@@ -292,6 +295,8 @@
 						var x = "<option value='"+listing_city[a].id+"'>"+listing_city[a].nama+"</option>";
 						$("#register_kota").append(x);
 					}
+					
+					$.mobile.loading( "hide" );
 
 			}, "json");
 		
@@ -300,6 +305,7 @@
 		{
 			$("#register_kota").attr("disabled","disabled");
 			$("#register_kota").html("<option value=''>- PILIH KOTA -</option>");
+			$.mobile.loading( "hide" );
 		}
 	});	
 	
@@ -623,121 +629,344 @@
 
 	// ACTION LIST PRODUCT FROM MENU DASHBOARD
 	// Ready
-	$(document).on('pageinit',function(event){
-		$( document ).on( "click", ".menu_page_product", function() {
+	
+	$( document ).on( "click", ".menu_page_product", function() {
+		
+		$("#product_notif").html("");
+		
+		var customer_id = $(".customer_id").html();
+		var category = $(this).attr("title");
+		 
+		var page = $(this).attr("rel");
+		var page = parseInt(page);
+		var prev_page = page - 1;
+		var next_page = page + 1;
+
+			$.post(base_url+"/get_list_product", {token: token, tipe: 'Ready Stock', page: page, category: category, customer_id: customer_id},
+			   function(data){
+
+				/* check */
+				if(data.status == 'Invalid Token')
+				{
+					check_token();
+				}
 			
-			var customer_id = $(".customer_id").html();
-			var category = $(this).attr("title");
-			 
-			var page = $(this).attr("rel");
-			var page = parseInt(page);
-			var prev_page = page - 1;
-			var next_page = page + 1;
-
-				$.post(base_url+"/get_list_product", {token: token, tipe: 'Ready Stock', page: page, category: category, customer_id: customer_id},
-				   function(data){
-
-					/* check */
-					if(data.status == 'Invalid Token')
-					{
-						check_token();
-					}
+				if(data.status == 'OFF')
+				{
+					check_status_aplikasi(data.message);
+				}
 				
-					if(data.status == 'OFF')
-					{
-						check_status_aplikasi(data.message);
-					}
+				if(data.status == 'Member Not Active')
+				{
+					check_status_member();
+				}
+				/* end check */ 
+			   
+				if(data.status == 'Not_found')
+				{
+					$("#product_notif").html("<center>Data tidak ada</center>");
+					$(".product_detail_list").hide();	
+					$("#page_product_current").html("1");
 					
-					if(data.status == 'Member Not Active')
-					{
-						check_status_member();
-					}
-					/* end check */ 
-				   
-					if(data.status == 'Not_found')
-					{
-						$("#product_notif").html("<center>Data tidak ada</center>");
-						$(".product_detail_list").hide();	
-						$("#page_product_current").html("1");
+					window.location = "#page_product";
+					
+				}
+				else	
+				if(data.status == 'Success')
+				{
+					var item = data.product;
+					var item_length = item.length;
+					$("#product_notif").html("");
+					for(var i = 0; i < 20; i++)  
+					{	
 						
-						window.location = "#page_product";
+						var listing = "#list_product #list_"+i;
 						
-					}
-					else	
-					if(data.status == 'Success')
-					{
-						var item = data.product;
-						var item_length = item.length;
-						$("#product_notif").html("");
-						for(var i = 0; i < 20; i++)  
+						if(i < item_length)
 						{	
+							$(listing).show();
+							$(listing+" img").attr("src",item[i].img_thumbnail); 
+							$(listing+" h2").html(item[i].name_item);
 							
-							var listing = "#list_product #list_"+i;
+							var item_harga_lama = parseFloat(item[i].harga_lama);
 							
-							if(i < item_length)
-							{	
-								$(listing).show();
-								$(listing+" img").attr("src",item[i].img_thumbnail); 
-								$(listing+" h2").html(item[i].name_item);
+							if(item_harga_lama > 0)
+							{
+								var harga_lama = numeral(item_harga_lama).format('0.00');
+								var harga = numeral(item[i].harga).format('0.00');
+								$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
 								
-								var item_harga_lama = parseFloat(item[i].harga_lama);
-								
-								if(item_harga_lama > 0)
-								{
-									var harga_lama = numeral(item_harga_lama).format('0.00');
-									var harga = numeral(item[i].harga).format('0.00');
-									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
-									
-								}
-								else
-								{
-									var harga = numeral(item[i].harga).format('0.00');
-									$(listing+" p").html("Rp."+harga);
-								}	
-								
-								$(listing+" a").attr("rel",item[i].product_id);
 							}
 							else
 							{
-								$(listing).hide();
-							}
+								var harga = numeral(item[i].harga).format('0.00');
+								$(listing+" p").html("Rp."+harga);
+							}	
+							
+							$(listing+" a").attr("rel",item[i].product_id);
 						}
-						
-						$("#info_page_product").html(page);
-						$("#info_total_page_product").html(data.total_page);
-						
-						$("#page_product_prev").attr("rel",prev_page);
-						$("#page_product_prev").attr("title",category);
-						$("#page_product_current").html(page);
-						$("#page_product_next").attr("rel",next_page);
-						$("#page_product_next").attr("title",category);
-						
-						$("#refresh_product").attr("rel",1);
-						$("#refresh_product").attr("title",category);
-						
-						window.location = "#page_product";
-						
+						else
+						{
+							$(listing).hide();
+						}
 					}
-					else if(data.status == 'Failed')
-					{		
-						get_list_product(prev_page);
-					}	
 					
-				}, "json");
+					$("#info_page_product").html(page);
+					$("#info_total_page_product").html(data.total_page);
+					
+					$("#page_product_prev").attr("rel",prev_page);
+					$("#page_product_prev").attr("title",category);
+					$("#page_product_current").html(page);
+					$("#page_product_next").attr("rel",next_page);
+					$("#page_product_next").attr("title",category);
+					
+					$("#refresh_product").attr("rel",1);
+					$("#refresh_product").attr("title",category);
+					
+					window.location = "#page_product";
+					
+				}
+				else if(data.status == 'Failed')
+				{		
+					get_list_product(prev_page);
+				}	
 				
-				$.mobile.loading( "hide" );
-		
-		});
+			}, "json");
+			
+			$.mobile.loading( "hide" );
+	
 	});
 	
+	
+	// Ready (function)
+	function get_list_product_ready(category_id)
+	{
+		$("#product_notif").html("");
+		
+		var customer_id = $(".customer_id").html();
+		var category = category_id;
+		 
+		var page = 1;
+		var page = parseInt(page);
+		var prev_page = page - 1;
+		var next_page = page + 1;
+
+			$.post(base_url+"/get_list_product", {token: token, tipe: 'Ready Stock', page: page, category: category, customer_id: customer_id},
+			   function(data){
+
+				/* check */
+				if(data.status == 'Invalid Token')
+				{
+					check_token();
+				}
+			
+				if(data.status == 'OFF')
+				{
+					check_status_aplikasi(data.message);
+				}
+				
+				if(data.status == 'Member Not Active')
+				{
+					check_status_member();
+				}
+				/* end check */ 
+			   
+				if(data.status == 'Not_found')
+				{
+					$("#product_notif").html("<center>Data tidak ada</center>");
+					$(".product_detail_list").hide();	
+					$("#page_product_current").html("1");
+					
+					window.location = "#page_product";
+					
+				}
+				else	
+				if(data.status == 'Success')
+				{
+					var item = data.product;
+					var item_length = item.length;
+					$("#product_notif").html("");
+					for(var i = 0; i < 20; i++)  
+					{	
+						
+						var listing = "#list_product #list_"+i;
+						
+						if(i < item_length)
+						{	
+							$(listing).show();
+							$(listing+" img").attr("src",item[i].img_thumbnail); 
+							$(listing+" h2").html(item[i].name_item);
+							
+							var item_harga_lama = parseFloat(item[i].harga_lama);
+							
+							if(item_harga_lama > 0)
+							{
+								var harga_lama = numeral(item_harga_lama).format('0.00');
+								var harga = numeral(item[i].harga).format('0.00');
+								$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								
+							}
+							else
+							{
+								var harga = numeral(item[i].harga).format('0.00');
+								$(listing+" p").html("Rp."+harga);
+							}	
+							
+							$(listing+" a").attr("rel",item[i].product_id);
+						}
+						else
+						{
+							$(listing).hide();
+						}
+					}
+					
+					$("#info_page_product").html(page);
+					$("#info_total_page_product").html(data.total_page);
+					
+					$("#page_product_prev").attr("rel",prev_page);
+					$("#page_product_prev").attr("title",category);
+					$("#page_product_current").html(page);
+					$("#page_product_next").attr("rel",next_page);
+					$("#page_product_next").attr("title",category);
+					
+					$("#refresh_product").attr("rel",1);
+					$("#refresh_product").attr("title",category);
+					
+					window.location = "#page_product";
+					
+				}
+				else if(data.status == 'Failed')
+				{		
+					get_list_product(prev_page);
+				}	
+				
+			}, "json");
+			
+			$.mobile.loading( "hide" );
+	}
+	
 	//PO
-	$(document).on('pageinit',function(event){
-		$( document ).on( "click", ".menu_page_product_po", function() {
+	
+	$( document ).on( "click", ".menu_page_product_po", function() {
+		
+		$("#product_po_notif").html("");
+		
+		var customer_id = $(".customer_id").html();
+		var category = $(this).attr("title");
+		 
+		var page = $(this).attr("rel");
+		var page = parseInt(page);
+		var prev_page = page - 1;
+		var next_page = page + 1;
+
+			$.post(base_url+"/get_list_product", {token: token, tipe: 'PO', page: page, category: category, customer_id: customer_id},
+			   function(data){
+				
+				/* check */
+				if(data.status == 'Invalid Token')
+				{
+					check_token();
+				}
+			
+				if(data.status == 'OFF')
+				{
+					check_status_aplikasi(data.message);
+				}
+				
+				if(data.status == 'Member Not Active')
+				{
+					check_status_member();
+				}
+				/* end check */ 
+				
+				if(data.status == 'Not_found')
+				{
+					$("#product_po_notif").html("<center>Data tidak ada</center>");
+					$(".product_detail_list").hide();	
+					$("#page_product_current").html("1");
+					
+					window.location = "#page_product_po";
+					
+				}
+				else	
+				
+			   if(data.status == 'Success')
+			   {
+					var item = data.product;
+					var item_length = item.length;
+					$("#product_notif").html("");
+					for(var i = 0; i < 20; i++)  
+					{	
+						
+						var listing = "#list_product #list_"+i;
+						
+						if(i < item_length)
+						{	
+							$(listing).show();
+							$(listing+" img").attr("src",item[i].img_thumbnail); 
+							$(listing+" h2").html(item[i].name_item);
+							
+							var item_harga_lama = parseFloat(item[i].harga_lama);
+							
+							if(item_harga_lama > 0)
+							{
+								var harga_lama = numeral(item_harga_lama).format('0.00');
+								var harga = numeral(item[i].harga).format('0.00');
+								$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								
+							}
+							else
+							{
+								var harga = numeral(item[i].harga).format('0.00');
+								$(listing+" p").html("Rp."+harga);
+							}	
+							
+							$(listing+" a").attr("rel",item[i].product_id);
+						}
+						else
+						{
+							$(listing).hide();
+						}
+					}
+					
+					$("#info_page_product_po").html(page);
+					$("#info_total_page_product_po").html(data.total_page);
+					
+					$("#page_product_prev_po").attr("rel",prev_page);
+					$("#page_product_prev_po").attr("title",category);
+					$("#page_product_current_po").html(page);
+					$("#page_product_next_po").attr("rel",next_page);
+					$("#page_product_next_po").attr("title",category);
+					
+					$("#refresh_product_po").attr("rel",1);
+					$("#refresh_product_po").attr("title",category);
+					
+					window.location = "#page_product_po";
+					
+				}
+				else if(data.status == 'Failed')
+				{		
+					get_list_product(prev_page);
+				}	
+				
+				
+			}, "json");
+			
+			$.mobile.loading( "hide" );
+	
+	});
+	
+
+	
+	// PO (function)
+	function get_list_product_po(category_id)
+	{
+			$("#product_po_notif").html("");
 			
 			var customer_id = $(".customer_id").html();
-			var category = $(this).attr("title");
+			var category = category_id;
 			 
-			var page = $(this).attr("rel");
+			var page = 1;
 			var page = parseInt(page);
 			var prev_page = page - 1;
 			var next_page = page + 1;
@@ -836,10 +1065,8 @@
 				}, "json");
 				
 				$.mobile.loading( "hide" );
-		
-		});
-	});
-
+	}
+	
 	// SEARCH PRODUCT READY STOCK
 	$( document ).on( "submit", "#form_search", function() {
 	
@@ -1082,9 +1309,23 @@
 					}
 					else
 					{
-						if(data.view_stock == 1)
+						if((data.view_stock == 1) || (data.view_stock == 2))
 						{
-							$("#select-variant").append("<option value='"+variants[i].id_variant+"'>"+variants[i].variant_name+" ("+variants[i].stock+")</option>");
+							if(data.view_stock ==1)
+							{			
+								$("#select-variant").append("<option value='"+variants[i].id_variant+"'>"+variants[i].variant_name+" ("+variants[i].stock+")</option>");
+							}
+							else
+							{
+								if(variants[1].stock == 'HABIS')
+								{
+									$("#select-variant").append("<option value='"+variants[i].id_variant+"'>"+variants[i].variant_name+" ("+variants[i].stock+")</option>");		
+								}
+								else
+								{
+									$("#select-variant").append("<option value='"+variants[i].id_variant+"'>"+variants[i].variant_name+"</option>");
+								}
+							}	
 						}
 						else
 						{
@@ -1109,6 +1350,7 @@
 			
 			// Placing variable to item 
 			$("#item_id").val(data.product_id);
+			$("#item_category").val(data.category_id);
 			$("#item_name").val(data.name_item);
 			$("#item_price").val(data.harga);
 			$("#item_ukuran").val(data.ukuran);
@@ -1176,12 +1418,14 @@
 
 		var customer_id = $(".customer_id").html();
 		var order_prod_id = $("#item_id").val();
+		var order_category_id = $("#item_category").val();
 		var order_variant_id = $("#select-variant").val();
 		var order_qty = $("#item_qty").val();
 		var order_price = $("#item_price").val();
 		var order_ukuran = $("#item_ukuran").val();
 		var order_notes = $("#item_notes").val();
 		var min_order = $("#item_min_order").val();
+		var order_category = $("#item_category");
 		
 		// alert(customer_id+"<br/>"+order_prod_id+"<br/>"+order_color_id+"<br/>"+order_qty+"<br/>"+order_price);
 		
@@ -1219,13 +1463,15 @@
 						{
 							if(data.product_type == 'Ready Stock')
 							{
-								window.location = "#page_product";
+								alert("Produk telah dipesan");
+								get_list_product_ready(order_category_id);
 							}
 							else
 							{
-								window.location = "#page_product_po";
+								alert("Produk telah dipesan");
+								get_list_product_po(order_category_id);
 							}
-							alert("Produk telah dipesan");
+							
 						}
 						else
 						{
@@ -1460,6 +1706,8 @@
 						$("#dropship1_to").val(data_customer.name);
 						$("#dropship1_address").val(data_customer.address);
 						$("#dropship1_kota").html("<option value='"+data_customer.kota_id+"'>"+data_customer.kota+"</option>");
+						$("#dropship1_phone").val(data_customer.phone);
+						$("#dropship1_kodepos").val(data_customer.postcode);
 						
 						// GET SHIP RATES 
 						 $.post(base_url+"/get_ship_rates_cost",{token: token, kota_id: data_customer.kota_id},
@@ -1613,6 +1861,8 @@
 	
 	$( document ).on( "change", "#dropship2_provinsi", function() {
 	
+		$.mobile.loading( "show" );
+		
 		var customer_id = $(".customer_id").html();
 		var prov_id = $(this).val();
 		
@@ -1653,7 +1903,9 @@
 						var x = "<option value='"+listing_city[a].id+"'>"+listing_city[a].nama+"</option>";
 						$("#dropship2_kota").append(x);
 					}
-
+					
+					$.mobile.loading( "hide" );
+					
 			}, "json");
 		
 		}
@@ -1661,6 +1913,8 @@
 		{
 			$("#dropship2_kota").attr("disabled","disabled");
 			$("#dropship2_kota").html("<option value=''>- PILIH KOTA -</option>");
+			
+			$.mobile.loading( "hide" );
 		}
 	});	
 	
@@ -2550,4 +2804,8 @@
             return false;
         }
    }
+	
+	
+
+	
 	
