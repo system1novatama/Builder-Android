@@ -1,11 +1,11 @@
-	var shop_name = "EPIC"; // NAMA TOKO ONLINE
-	var domain = "http://epicfashion.id/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Tokomobile Demo"; // NAMA TOKO ONLINE
+	var domain = "http://tokomobile.co.id/demo/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/EPIC"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "f5d17c6f4182a8690d3277680e3ee32d"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "2897218422421213"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
@@ -1719,7 +1719,7 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data_customer.message);
 				}
-				if(data.status == 'Member Not Found')
+				if(data_customer.status == 'Member Not Found')
 				{
 					check_status_member_not_found();
 				}
@@ -2925,7 +2925,6 @@ var cart_item_id = new Array();
             return false;
         }
    }
-	
 	
 
 	
