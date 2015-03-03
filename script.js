@@ -1,11 +1,11 @@
-	var shop_name = "LOLIPOLLY"; // NAMA TOKO ONLINE
-	var domain = "http://lolipollyboutique.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Tokomobile Demo"; // NAMA TOKO ONLINE
+	var domain = "http://tokomobile.co.id/demo/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/LOLIPOLLY"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "e0390ef7166c7b015919040dcd24038f"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "2897218422421213"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
@@ -88,11 +88,13 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
+				
 				else
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
 				}
+				
 				else
 				{
 					var customer_id = login_customer_id;
@@ -162,6 +164,13 @@ var cart_item_id = new Array();
 		return false;		
 	}
 	
+	function check_status_member_not_found()
+	{
+		$("#login_message").html("<div class='alert-error'>Member Not Found</div>");
+		window.location = "#page_login";
+		return false;		
+	}
+	
 	// LOGIN 
 	$( document ).on( "submit", "#form_login", function() {
 
@@ -184,10 +193,15 @@ var cart_item_id = new Array();
 				check_status_aplikasi(data.message);
 			}
 			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
 			}
+			
 			/* end check */ 			
 			
 			if(data.status == 'Failed')
@@ -237,7 +251,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data_prov.message);
 					}
-					
+					if(data_prov.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data_prov.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -278,7 +295,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data_city.message);
 					}
-					
+					if(data_city.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data_city.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -332,7 +352,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data_prov.message);
 					}
-					
+					if(data_prov.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data_prov.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -381,7 +404,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -429,7 +455,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -493,7 +522,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -572,7 +604,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -654,7 +689,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -763,7 +801,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -871,7 +912,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -983,7 +1027,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -1092,7 +1139,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -1191,7 +1241,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -1281,7 +1334,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -1397,7 +1453,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -1451,7 +1510,10 @@ var cart_item_id = new Array();
 						{
 							check_status_aplikasi(data.message);
 						}
-						
+						if(data.status == 'Member Not Found')
+						{
+							check_status_member_not_found();
+						}
 						if(data.status == 'Member Not Active')
 						{
 							check_status_member();
@@ -1474,7 +1536,7 @@ var cart_item_id = new Array();
 						}
 						else
 						{
-							alert("Tidak dapat memesan produk Varian ini");
+							alert(data.message);
 							$.mobile.loading( "hide" );
 						}
 						
@@ -1527,7 +1589,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -1584,7 +1649,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -1651,7 +1719,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data_customer.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data_customer.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -1781,7 +1852,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -1828,7 +1902,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data_prov.message);
 					}
-					
+					if(data_prov.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data_prov.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -1886,7 +1963,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data_city.message);
 				}
-				
+				if(data_city.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data_city.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -1938,7 +2018,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data_cost.message);
 				}
-				
+				if(data_cost.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data_cost.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -2034,7 +2117,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -2119,7 +2205,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -2164,7 +2253,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -2248,7 +2340,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -2301,7 +2396,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -2377,7 +2475,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data.message);
 				}
-				
+				if(data.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -2422,7 +2523,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -2496,7 +2600,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -2531,7 +2638,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -2567,7 +2677,10 @@ var cart_item_id = new Array();
 					{
 						check_status_aplikasi(data.message);
 					}
-					
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
 					if(data.status == 'Member Not Active')
 					{
 						check_status_member();
@@ -2610,7 +2723,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -2630,7 +2746,10 @@ var cart_item_id = new Array();
 				{
 					check_status_aplikasi(data_customer.message);
 				}
-				
+				if(data_customer.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
 				if(data_customer.status == 'Member Not Active')
 				{
 					check_status_member();
@@ -2675,7 +2794,10 @@ var cart_item_id = new Array();
 			{
 				check_status_aplikasi(data.message);
 			}
-			
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
 			if(data.status == 'Member Not Active')
 			{
 				check_status_member();
@@ -2803,3 +2925,7 @@ var cart_item_id = new Array();
             return false;
         }
    }
+	
+	
+
+	
