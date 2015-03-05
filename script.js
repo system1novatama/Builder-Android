@@ -1,11 +1,11 @@
-	var shop_name = "Ms Fashion"; // NAMA TOKO ONLINE
-	var domain = "http://msfashioners.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Ella Ufaira Shop"; // NAMA TOKO ONLINE
+	var domain = "http://ellaufairashop.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/MsFashion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "bcf9ffef444671e4101523b917f4ae7e"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Ella-Ufaira-Shop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "7cd953587cd0cafb5a3fcd7fe83aab60"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
