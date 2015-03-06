@@ -1,11 +1,11 @@
-	var shop_name = "Sachio Ecer Termurah"; // NAMA TOKO ONLINE
-	var domain = "http://sachioecertermurahapp.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "RNB"; // NAMA TOKO ONLINE
+	var domain = "http://rnb-onlineshop.com"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Sachio"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "f3f02ff92e6ff2cce12ea6ef494032ce"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/RNB"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "a23ae4c070c0889cdb69e7f59894ed48"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
