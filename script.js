@@ -1,11 +1,11 @@
-	var shop_name = "Cheryl Shoppe"; // NAMA TOKO ONLINE
-	var domain = "http://cheryl-shoppe.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Sachio Ecer Termurah"; // NAMA TOKO ONLINE
+	var domain = "http://sachioecertermurahapp.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/CherylShoppe"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "720bfd7dc55880307a1d5479fcca5fb6"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Sachio"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "f3f02ff92e6ff2cce12ea6ef494032ce"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
