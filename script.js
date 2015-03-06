@@ -1,5 +1,5 @@
 	var shop_name = "RNB"; // NAMA TOKO ONLINE
-	var domain = "http://rnb-onlineshop.com"; // DOMAIN URL ADMIN
+	var domain = "http://rnb-onlineshop.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
