@@ -1,11 +1,11 @@
-	var shop_name = "Mrs Han"; // NAMA TOKO ONLINE
-	var domain = "http://mrs-han.toko-mobile.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "JE Clothing"; // NAMA TOKO ONLINE
+	var domain = "http://je-clothing.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/MrsHan"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "6e61df1a066cc22f94c1c81987fe9526"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/JE-Clothing"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "5fb00655381b1e417ec4a4e7de9682d9"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();

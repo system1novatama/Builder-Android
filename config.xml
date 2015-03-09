@@ -2,14 +2,14 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.mrshan"
+	id = "com.tokomobile.jeclothing"
 	version = "2.0.0">
-	<name>Mrs Han</name>
+	<name>JE Clothing</name>
 	<description>
-	Mrs Han 2.0 by Novatama Infomedia.
+	JE Clothing 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
-	Mrs Han
+	JE Clothing
 	</author>
 	<!--
 	If you do not want any permissions to be added to your app, add the
