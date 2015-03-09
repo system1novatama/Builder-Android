@@ -1,11 +1,11 @@
-	var shop_name = "Zoel Collection"; // NAMA TOKO ONLINE
-	var domain = "http://zoel-collection-onlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "FADHIA"; // NAMA TOKO ONLINE
+	var domain = "http://fadhia-collection.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ZoelCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "1158388e8375892e1ee7dd7a5296d3fa"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/FADHIA"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "95c244ffa966e8b26dfa4d7b87beffd2"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
