@@ -2,14 +2,14 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.1stlinecorner"
+	id = "com.tokomobile.darelfashion"
 	version = "2.0.0">
-	<name>1st Line Corner </name>
+	<name>Darel Fashion</name>
 	<description>
-	1st Line Corner  2.0 by Novatama Infomedia.
+	Darel Fashion 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
-	1st Line Corner 
+	Darel Fashion
 	</author>
 	<!--
 	If you do not want any permissions to be added to your app, add the
