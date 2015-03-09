@@ -1,11 +1,11 @@
-	var shop_name = "HDM Collection"; // NAMA TOKO ONLINE
-	var domain = "http://hdm-collection.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Ms Fashion"; // NAMA TOKO ONLINE
+	var domain = "http://msfashioners.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/HDMCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "d6b9f41a4fd874a84b089332ddcce756"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/MsFashion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "bcf9ffef444671e4101523b917f4ae7e"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
