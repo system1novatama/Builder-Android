@@ -1,11 +1,11 @@
-	var shop_name = "MVS Collection"; // NAMA TOKO ONLINE
-	var domain = "http://mvs-collection.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Darel Fashion"; // NAMA TOKO ONLINE
+	var domain = "http://darel-fashion.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/MVS_Collection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "2ec02bc805fc9ac1df1ea613ab692a98"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/DarelFashion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "eded8ad40304c17fbcc8aa5635db8df3"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
