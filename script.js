@@ -2859,26 +2859,7 @@ var cart_item_id = new Array();
 			// download function call
 			filetransfer(download_link, fp);
 		}
-		*/
-		function fileSystemSuccess(fs){
-		if (fs.root.fullPath === 'file:///storage/sdcard0'){
-		fs.root.fullPath = 'file:///storage'; // change the path
-		}
-		// create directory reader
-		var directoryReader = fs.root.createReader()
-		// get a list of all entries in the directory
-		directoryReader.readEntries(dirSuccess,fail);
-		}
-		 
-		function dirSuccess(entries){
-		console.log(entries);
-		// will print something like the following to the console
-		// [{"isFile":false,"isDirectory":true,"name":"extSdCard",
-		// "fullPath":"file:///storage/extSdCard","filesystem":null},
-		// {"isFile":false,"isDirectory":true,"name":"sdcard0",
-		// "fullPath":"file:///storage/sdcard0","filesystem":null}
-		// ]
-		}
+
 		function onDirectorySuccess(parent) {
 			// Directory created successfuly
 		}
@@ -2892,6 +2873,36 @@ var cart_item_id = new Array();
 			//Unable to access file system
 			alert(evt.target.error.code);
 		 }
+		 */
+		 function fileSystemSuccess(fileSystem) {
+			var directoryEntry = fileSystem.root; // to get root path to directory
+			directoryEntry.getDirectory("<folder_name>", {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
+			var rootdir = fileSystem.root;
+			var fp = rootdir.fullPath;
+			fp = fp+"/<folder_name>/image_name.png";
+			var fileTransfer = new FileTransfer();
+		   fileTransfer.download("<url_to_download>",fp,  
+				function(entry) {
+				 alert("download complete: " + entry.fullPath);
+			 },
+			 function(error) {
+				 alert("download error source " + error.source);
+				 alert("download error target " + error.target);
+				 alert("upload error code" + error.code);
+			 }
+			);
+		}
+		function onDirectorySuccess(parent) {
+			console.log(parent);
+		}
+		 
+		function onDirectoryFail(error) {
+			alert("Unable to create new directory: " + error.code);
+		}
+		 
+		function fileSystemFail(evt) {
+			console.log(evt.target.error.code);
+		}
 	}
 	
 	function filetransfer(download_link, fp) {
