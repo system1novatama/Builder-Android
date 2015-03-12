@@ -2860,7 +2860,7 @@ var cart_item_id = new Array();
 			filetransfer(download_link, fp);
 		}
 		*/
-		function fsSuccess(fs){
+		function fileSystemSuccess(fs){
 		if (fs.root.fullPath === 'file:///storage/sdcard0'){
 		fs.root.fullPath = 'file:///storage'; // change the path
 		}
