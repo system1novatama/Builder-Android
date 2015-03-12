@@ -1,11 +1,11 @@
-	var shop_name = "Tokomobile Demo"; // NAMA TOKO ONLINE
-	var domain = "http://tokomobile.co.id/demo/"; // DOMAIN URL ADMIN
+	var shop_name = "Tykhe Store"; // NAMA TOKO ONLINE
+	var domain = "http://tykhe-store.toko-mobile.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "DCIM/TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "2897218422421213"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Tykhe-Store"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "f878729157be2ac8d686bfca35f38d32"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
@@ -2845,7 +2845,7 @@ var cart_item_id = new Array();
 	function download(file_img, Folder_Name, base_download_url) {
 	//step to request a file system 
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
-		/*
+
 		function fileSystemSuccess(fileSystem) {
 			var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
 			ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
@@ -2873,39 +2873,6 @@ var cart_item_id = new Array();
 			//Unable to access file system
 			alert(evt.target.error.code);
 		 }
-		 */
-		 function fileSystemSuccess(fileSystem) {
-			var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
-			ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
-			
-			var directoryEntry = fileSystem.root; // to get root path to directory
-			directoryEntry.getDirectory(Folder_Name, {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
-			var rootdir = fileSystem.root;
-			var fp = rootdir.fullPath;
-			fp = fp + "/" + Folder_Name + "/" + file_img; // fullpath and name of the file which we want to give
-			var fileTransfer = new FileTransfer();
-			filetransfer(download_link, fp);
-				function(entry) {
-				 alert("download complete: " + entry.fullPath);
-			 },
-			 function(error) {
-				 alert("download error source " + error.source);
-				 alert("download error target " + error.target);
-				 alert("upload error code" + error.code);
-			 }
-			);
-		}
-		function onDirectorySuccess(parent) {
-			console.log(parent);
-		}
-		 
-		function onDirectoryFail(error) {
-			alert("Unable to create new directory: " + error.code);
-		}
-		 
-		function fileSystemFail(evt) {
-			console.log(evt.target.error.code);
-		}
 	}
 	
 	function filetransfer(download_link, fp) {
