@@ -4,7 +4,7 @@
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "DCIM/TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var dir_image = "TokomobileDemo"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
 	var token = "2897218422421213"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
