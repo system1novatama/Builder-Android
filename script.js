@@ -2875,13 +2875,16 @@ var cart_item_id = new Array();
 		 }
 		 */
 		 function fileSystemSuccess(fileSystem) {
+			var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
+			ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
+			
 			var directoryEntry = fileSystem.root; // to get root path to directory
-			directoryEntry.getDirectory("<folder_name>", {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
+			directoryEntry.getDirectory(Folder_Name, {create: true, exclusive: false}, onDirectorySuccess, onDirectoryFail);
 			var rootdir = fileSystem.root;
 			var fp = rootdir.fullPath;
-			fp = fp+"/<folder_name>/image_name.png";
+			fp = fp + "/" + Folder_Name + "/" + file_img; // fullpath and name of the file which we want to give
 			var fileTransfer = new FileTransfer();
-		   fileTransfer.download("<url_to_download>",fp,  
+			filetransfer(download_link, fp);
 				function(entry) {
 				 alert("download complete: " + entry.fullPath);
 			 },
