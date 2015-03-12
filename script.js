@@ -2845,7 +2845,6 @@ var cart_item_id = new Array();
 	function download(file_img, Folder_Name, base_download_url) {
 	//step to request a file system 
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
-		/*
 		function fileSystemSuccess(fileSystem) {
 			var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
 			ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
@@ -2873,7 +2872,8 @@ var cart_item_id = new Array();
 			//Unable to access file system
 			alert(evt.target.error.code);
 		 }
-		 */
+		 
+		 /*
 		 function fileSystemSuccess(fileSystem) {
 			var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
 			ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
@@ -2883,7 +2883,6 @@ var cart_item_id = new Array();
 			var rootdir = fileSystem.root;
 			var fp = rootdir.fullPath;
 			fp = fp + "/" + Folder_Name + "/" + file_img; // fullpath and name of the file which we want to give
-			var fileTransfer = new FileTransfer();
 			filetransfer(download_link, fp);
 			}
 			
@@ -2898,6 +2897,7 @@ var cart_item_id = new Array();
 		function fileSystemFail(evt) {
 			console.log(evt.target.error.code);
 		}
+		*/
 	}
 	
 	function filetransfer(download_link, fp) {
