@@ -1,11 +1,11 @@
-	var shop_name = "Baju Murah Online"; // NAMA TOKO ONLINE
-	var domain = "http://bajumurahonline.net/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Exoz Olshop"; // NAMA TOKO ONLINE
+	var domain = "http://exoz-olshop.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/BajuMurahOnline"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "e18c2f466c73f398ca63567a17003a84"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/ExozOlshop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "e4aaeae2af25a97afdf31239011fcac1"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
