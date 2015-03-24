@@ -1,11 +1,11 @@
-	var shop_name = "VERONA"; // NAMA TOKO ONLINE
-	var domain = "http://verona-onlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Baju Murah Online"; // NAMA TOKO ONLINE
+	var domain = "http://bajumurahonline.net/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/VERONA"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "aa215f4aec2765171d5609401ed9fc87"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/BajuMurahOnline"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "e18c2f466c73f398ca63567a17003a84"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();

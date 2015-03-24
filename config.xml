@@ -2,14 +2,14 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.verona"
+	id = "com.tokomobile.bajumurahonline"
 	version = "2.0.0">
-	<name>VERONA</name>
+	<name>Baju Murah Online</name>
 	<description>
-	VERONA 2.0 by Novatama Infomedia.
+	Baju Murah Online 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
-	VERONA
+	Baju Murah Online
 	</author>
 	<!--
 	If you do not want any permissions to be added to your app, add the
