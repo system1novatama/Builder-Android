@@ -1,11 +1,11 @@
-	var shop_name = "Exoz Olshop"; // NAMA TOKO ONLINE
-	var domain = "http://exoz-olshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "MissEka Shop"; // NAMA TOKO ONLINE
+	var domain = "http://misseka.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ExozOlshop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "e4aaeae2af25a97afdf31239011fcac1"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/MissEkaShop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "a77d72b5c411c669458dc384b2bd998d"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
