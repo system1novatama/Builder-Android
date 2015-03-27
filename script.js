@@ -1,11 +1,11 @@
-	var shop_name = "Claudia Collection"; // NAMA TOKO ONLINE
-	var domain = "http://claudiaonlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "JIF"; // NAMA TOKO ONLINE
+	var domain = "http://jakartaindofashion.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ClaudiaCollection"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "ede7df7543f5f9ea35a00f0ca6d93acc"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/JIF"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "4affc5c75cbd4b925e3bcefba4dd6573"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
