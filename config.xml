@@ -2,14 +2,14 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.claudiacollection"
+	id = "com.tokomobile.missekashop"
 	version = "2.0.0">
-	<name>Claudia Collection</name>
+	<name>MissEka Shop</name>
 	<description>
-	Claudia Collection 2.0 by Novatama Infomedia.
+	MissEka Shop 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
-	Claudia Collection
+	MissEka Shop
 	</author>
 	<!--
 	If you do not want any permissions to be added to your app, add the
