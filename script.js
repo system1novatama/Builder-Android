@@ -1,11 +1,11 @@
-	var shop_name = "Fruity"; // NAMA TOKO ONLINE
-	var domain = "http://xtwoshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "POP UP"; // NAMA TOKO ONLINE
+	var domain = "http://fashiion-online.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Fruity"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "37841dbb53f4e23da5f5cbf1f0751cd3"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/POPUP"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "1ad39051b176b02a79603ed2d91c6a49"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
