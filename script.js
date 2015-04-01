@@ -1,11 +1,11 @@
-	var shop_name = "Bonbon Fashion"; // NAMA TOKO ONLINE
-	var domain = "http://bonbonfashion-bali.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Glory Online"; // NAMA TOKO ONLINE
+	var domain = "http://grosir-baju-online.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/BonbonFashion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "e2af79a991dd06bc34dee76bccfa6ac5"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Glory-Online"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "d9ed33aad86c4d48ff00254d09178951"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();

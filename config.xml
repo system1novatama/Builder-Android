@@ -2,14 +2,14 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.bonbonfashion"
+	id = "com.tokomobile.gloryonline"
 	version = "2.0.0">
-	<name>Bonbon Fashion</name>
+	<name>Glory Online</name>
 	<description>
-	Bonbon Fashion 2.0 by Novatama Infomedia.
+	Glory Online 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
-	Bonbon Fashion
+	Glory Online
 	</author>
 	<!--
 	If you do not want any permissions to be added to your app, add the
