@@ -1,11 +1,11 @@
-	var shop_name = "Colaino Mode"; // NAMA TOKO ONLINE
-	var domain = "http://colainomode.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "March Online Shop"; // NAMA TOKO ONLINE
+	var domain = "http://marchonlineshop.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/ColainoMode"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "92f114efd7cd534df975b738ece01ecd"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/MarchOnlineShop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "bd09b6a92baba85117f95f816b23fb51"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
