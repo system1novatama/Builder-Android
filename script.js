@@ -1,11 +1,11 @@
-	var shop_name = "March Online Shop"; // NAMA TOKO ONLINE
-	var domain = "http://marchonlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Bonbon Fashion"; // NAMA TOKO ONLINE
+	var domain = "http://bonbonfashion-bali.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/MarchOnlineShop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "bd09b6a92baba85117f95f816b23fb51"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/BonbonFashion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "e2af79a991dd06bc34dee76bccfa6ac5"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
