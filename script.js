@@ -1,11 +1,11 @@
-	var shop_name = "Topshop Couture"; // NAMA TOKO ONLINE
-	var domain = "http://topshop-couture.toko-mobile.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "DShop Jakarta Fahsion"; // NAMA TOKO ONLINE
+	var domain = "http://dshopp-jf.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/TopshopCouture"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "d7fece82f0af12513ed52c53eb1e44d8"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/DShopJakartaFahsion"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "a8b2f26f8b8da2d6d6d2744ea734b070"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
