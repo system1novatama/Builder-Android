@@ -1,11 +1,11 @@
-	var shop_name = "Starline Online Shop"; // NAMA TOKO ONLINE
-	var domain = "http://starlineonlineshop.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Belluz"; // NAMA TOKO ONLINE
+	var domain = "http://belluz.net/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/StarlineOnlineShop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "40f85d0117be984b752d2de9193d1ba7"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Belluz"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "e01f37e59eb80a466d54638d77a70a56"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
