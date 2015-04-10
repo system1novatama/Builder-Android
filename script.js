@@ -1,12 +1,12 @@
 
-	var shop_name = "Sippnshop"; // NAMA TOKO ONLINE
-	var domain = "http://sippnshop.linkaplikasi.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Owls House"; // NAMA TOKO ONLINE
+	var domain = "http://owls-house.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/Sippnshop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "8053257af41c0cbfe29a8f382795162c"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/OwlsHouse"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "56269f88b85f6fb6e3b2803f0ac09f65"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
