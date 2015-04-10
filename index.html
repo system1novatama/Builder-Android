@@ -291,7 +291,7 @@
 		<div data-role="navbar">
 			<ul>
 			<li>
-				<a href="#page_myorder_menu" class="ui-icon-bars ui-btn-a ui-btn-icon-top show-page-loading-msg  show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">List Pesanan Barang</a>
+				<a href="#" class="ui-icon-bars ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_myorder show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">List Pesanan Barang</a>
 			</li>
 		</ul>
 		</div>
@@ -308,13 +308,6 @@
 			<ul>	
 			<li>
 				<a href="#" class="ui-icon-check ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_confirm" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Konfirmasi Pembayaran</a>
-			</li>
-			</ul>
-		</div>
-		<div data-role="navbar">
-			<ul>	
-			<li>
-				<a href="#"  class="ui-icon-mail ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_resi" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true" rel="1">Info Resi </a>
 			</li>
 			</ul>
 		</div>
@@ -716,39 +709,7 @@
 	
 </div>
 
-<!-- LIST PESANAN BARANG MENU-->
-<div data-role="page" data-control-title="Data Pesanan" id="page_myorder_menu" >
-	
-    <div data-theme="b" data-role="header">
-       <div data-role="navbar">
-			<ul>
 
-			<li><a href="#" class="ui-btn ui-icon-home ui-btn-a ui-btn-icon-top">List Pesanan Barang</a></li>
-				
-			</ul>
-		</div><!-- /navbar -->
-    </div>
-    <div role="main" class="ui-content">
-		
-		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
-		<h3>Data Pesanan</h3>
-		
-      	 <ul data-role="listview" data-inset="true">
-		   <li><a href="#" class="menu_page_myorder_pending show-page-loading-msg" rel="1" title="Pesanan Pending">List Pesanan Pending</a></li>
-		   <li><a href="#" class="menu_page_myorder_ready show-page-loading-msg" rel="1"  title="Pesanan Ready">List Pesanan Ready</a></li>
-		   <li><a href="#" class="menu_page_myorder_sold show-page-loading-msg" rel="1"  title="Pesanan Sold">List Pesanan Sold</a></li>
-		</ul>
-    </div>
-	
-	 <div data-theme="b" data-role="footer" class="footer">
-       <div data-role="navbar">
-			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg check_new_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>
-				
-			</ul>
-		</div><!-- /navbar -->
-    </div>
-</div>
 
 <!-- LIST PESANAN BARANG -->
 <div data-role="page" data-control-title="My Order" id="page_myorder" >
@@ -789,7 +750,7 @@
 	<div data-theme="b" data-role="footer" class="back-footer">
        <div data-role="navbar">
 			<ul>
-				<li><a href="#page_myorder_menu" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
 				
 			</ul>
 		</div><!-- /navbar -->
@@ -823,8 +784,6 @@
 				<input type="hidden" value="" id="dropship1_total" />
 				<input type="hidden" value="" id="dropship1_weight" />
 				<input type="hidden" value="" id="dropship1_tipe" />
-				<input type="hidden" value="" id="dropship1_tarif_id" />
-				<input type="hidden" value="" id="dropship1_tarif_tipe" />
 			</div>
 		</div>
 		<br/>
@@ -835,8 +794,6 @@
 		<br/>
 		DARI<br/>
 		<textarea id="dropship1_from" readonly ></textarea>
-		TELEPON PENGIRIM <br/>
-		<input type="text" id="dropship1_phone_sender" value="" />
 		KEPADA <br/>
 		<textarea  id="dropship1_to" readonly ></textarea>
 		
@@ -850,23 +807,11 @@
 		<select name="dropship1_kota" id="dropship1_kota" data-role="none" readonly> 
 			
 		</select>
-		<br/>
 		KODEPOS <br/>
 		<input type="text" id="dropship1_kodepos" value="" readonly  /><br/>
 		TELEPON PENERIMA <br/>
 		<input type="text" id="dropship1_phone" value="" readonly />
-		
-		<br/>
-		DAERAH PENGIRIMAN<br/>
-		<a href="#page_data_tarif_pengiriman1" id="btn_data_tarif_pengiriman1" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="pop">Cari Tarif Ongkir Daerah</a> 
-		<input type="text" id="dropship1_tarif" value="" readonly />
-		
-		<br/>
-		JENIS TARIF<br/><br/>
-		<select name="dropship1_jenis_tarif" id="dropship1_jenis_tarif" data-role="none" onchange="kalkulasi_total_dropship1(this.options[this.selectedIndex].value)" readonly>
-			
-		</select>
-		
+
 		<hr/>
 		<button type="button"  class="show-page-loading-msg btn_process_dropship1" data-transition="fade" data-theme="b" data-icon="">KIRIM</button>
 		
@@ -911,8 +856,6 @@
 				<input type="hidden" value="" id="dropship2_total" />
 				<input type="hidden" value="" id="dropship2_weight" />
 				<input type="hidden" value="" id="dropship2_tipe" />
-				<input type="hidden" value="" id="dropship2_tarif_id" />
-				<input type="hidden" value="" id="dropship2_tarif_tipe" />
 			</div>
 		</div>
 		<br/>
@@ -923,8 +866,6 @@
 		<br/>
 		DARI<br/>
 		<textarea id="dropship2_from"></textarea>
-		TELEPON PENGIRIM <br/>
-		<input type="text" id="dropship2_phone_sender" value="" />
 		KEPADA <br/>
 		<textarea  id="dropship2_to"></textarea>
 		
@@ -939,22 +880,13 @@
 		<select name="dropship2_kota" id="dropship2_kota" data-role="none" disabled="disabled">
 			<option value="">- PILIH KOTA -</option>
 			
-		</select><br/>
+		</select>
 		KODEPOS <br/>
 		<input type="text" id="dropship2_kodepos" value="" /><br/>
 		TELEPON PENERIMA <br/>
 		<input type="text" id="dropship2_phone" value="" />
 		
-		<br/>
-		DAERAH PENGIRIMAN<br/>
-		<a href="#page_data_tarif_pengiriman2" id="btn_data_tarif_pengiriman2" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="pop">Cari Tarif Ongkir Daerah</a> 
-		<input type="text" id="dropship2_tarif" value="" readonly />
 		
-		<br/>
-		JENIS TARIF<br/><br/>
-		<select name="dropship2_jenis_tarif" id="dropship2_jenis_tarif" data-role="none" onchange="kalkulasi_total_dropship2(this.options[this.selectedIndex].value)" readonly>
-			
-		</select>
 		
 		
 		<hr/>
@@ -970,44 +902,6 @@
 			</ul>
 		</div><!-- /navbar -->
     </div>
-</div>
-
-
-
-<!-- GET TARIF ALAMAT SENDIRI -->
-<div  id="page_data_tarif_pengiriman1">
-
-		<div style="padding:10px;">
-	
-			<form id="form_get_tarif1">
-			<input type="text" class="form-control" name="get_tarif" id="get_tarif_text1" />
-			<button id="btn_get_tarif1" type="submit" class="show-page-loading-msg" >Cari Daerah</button>
-			</form>
-			<br/>
-			<div id="area_tarif1">
-			
-			</div>
-			
-		</div>
-	
-</div>
-
-<!-- GET TARIF ALAMAT LAIN -->
-<div  id="page_data_tarif_pengiriman2">
-
-		<div style="padding:10px;">
-	
-			<form id="form_get_tarif2">
-			<input type="text" class="form-control" name="get_tarif" id="get_tarif_text2" />
-			<button id="btn_get_tarif2" type="submit" class="show-page-loading-msg" >Cari Daerah</button>
-			</form>
-			<br/>
-			<div id="area_tarif2">
-			
-			</div>
-			
-		</div>
-	
 </div>
 
 
@@ -1213,91 +1107,6 @@
 		</div><!-- /navbar -->
     </div>
 </div>
-
-<!-- INFO RESI -->
-<div data-role="page" data-control-title="Messages" id="page_info_resi" >
-	
-    <div data-theme="b" data-role="header">
-       <div data-role="navbar">
-			<ul>
-								
-				<li><a href="#" class="ui-btn ui-icon-home ui-btn-a ui-btn-icon-top">Info Resi</a></li>
-				
-			</ul>
-		</div><!-- /navbar -->
-    </div>
-    <div role="main" class="ui-content">
-		
-		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
-		<h3>Info Resi</h3>
-		<div id="message_notif"></div>
-      	 <ul data-role="listview" data-inset="true" id="content_list_resi">
-		   <li id="list_0"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1" ></a></li>
-		    <li id="list_1"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_2"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_3"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_4"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_5"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1" ></a></li>
-		    <li id="list_6"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_7"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_8"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-		    <li id="list_9"><a href="#" class="menu_page_resi_detail show-page-loading-msg" rel="1"></a></li>
-			</ul>
-		
-		<div data-role="navbar" data-iconpos="top" id="paging">
-			<ul>
-					
-				<li><a href="#page4" id="page_resi_prev" class="menu_page_resi" data-icon=""  data-theme="b">Prev</a></li>
-				<li><a href="#page4" id="page_resi_current" data-transition="fade" data-theme="a" data-icon=""></a></li>
-				<li><a href="#page4" id="page_resi_next" class="menu_page_resi" data-icon=""  data-theme="b">Next</a></li>
-			
-			</ul>
-        </div>
-    </div>
-	
-	<div data-theme="b" data-role="footer" class="back-footer">
-       <div data-role="navbar">
-			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg check_new_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>
-				
-				
-			</ul>
-		</div><!-- /navbar -->
-    </div>
-</div>
-
-<!-- RESI DETAIL -->
-<div data-role="page" data-control-title="Messages" id="page_resi_detail" >
-	
-    <div data-theme="b" data-role="header">
-       <div data-role="navbar">
-			<ul>
-			
-			<li><a href="#" class="ui-btn ui-icon-home ui-btn-a ui-btn-icon-top">Info Resi</a></li>
-				
-			</ul>
-		</div><!-- /navbar -->
-    </div>
-    <div role="main" class="ui-content">
-		
-		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
-		<h3 id="resi_detail_date"></h3>
-      	
-      	<textarea id="resi_detail_content" data-role="none" style="width:100%;height:400px;"></textarea>
-		
-		
-    </div>
-	
-	 <div data-theme="b" data-role="footer" class="back-footer">
-       <div data-role="navbar">
-			<ul>
-				<li><a href="#page_info_resi" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg check_new_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>
-
-			</ul>
-		</div><!-- /navbar -->
-    </div>
-</div>
-
 
 <!-- MESSAGES -->
 <div data-role="page" data-control-title="Messages" id="page_message" >
