@@ -1,10 +1,10 @@
-	var shop_name = "Labelle Design"; // NAMA TOKO ONLINE
+	var shop_name = "Princess Bee"; // NAMA TOKO ONLINE
 	var domain = "http://princessbee.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/LabelleDesign"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var dir_image = "Pictures/PrincessBee"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
 	var token = "9be479731d5fdf9b472e1ff10d1ed6a2"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();

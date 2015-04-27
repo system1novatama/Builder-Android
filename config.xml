@@ -2,14 +2,14 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "com.tokomobile.labelledesign"
+	id = "com.tokomobile.princessbee"
 	version = "2.0.0">
-	<name>Labelle Design</name>
+	<name>Princess Bee</name>
 	<description>
-	Labelle Design 2.0 by Novatama Infomedia.
+	Princess Bee 2.0 by Novatama Infomedia.
 	</description>
 	<author href="http://tokomobile.co.id" email="info@novatama.co.id">
-	Labelle Design
+	Princess Bee
 	</author>
 	<!--
 	If you do not want any permissions to be added to your app, add the
