@@ -1,11 +1,11 @@
-	var shop_name = "WeShip.id"; // NAMA TOKO ONLINE
-	var domain = "http://admin.weship.id/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Labelle Design"; // NAMA TOKO ONLINE
+	var domain = "http://princessbee.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/WeShip"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "850e4511f2a87b82da2fff6dcda8c40d"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/LabelleDesign"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "9be479731d5fdf9b472e1ff10d1ed6a2"; // ISI DENGAN TOKEN 
 	
 var cart_item_id = new Array();
 	var cart_item_qty = new Array();
