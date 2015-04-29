@@ -10,8 +10,9 @@
 	<link rel="stylesheet" href="themes/tokomobile.min.css" />
 	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
   
-    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls -->
-
+    <script src="cordova.js"></script>          
+	<!-- phantom library, needed for Cordova api calls -->
+	
   <script type="text/javascript" src="jquery.min.js"></script>
   <script type="text/javascript" src="jquery.mobile-1.4.2.min.js"></script>
   <script type="text/javascript" src="numeral.min.js"></script>
@@ -63,6 +64,30 @@
 		margin-bottom:70px;
 	}
 	
+	#overlay-loading {
+		background: rgba(0,0,0,0.5);
+		position:fixed;
+		width:100%;
+		height:100%;
+		top:0;
+		left:0;
+		right:0;
+		left;
+		display:none;
+		}
+		
+	#overlay-loading .content-loading{
+		width:80%;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:50px;
+		padding:20px;
+		background:#fff;
+		text-align:center;
+		box-shadow:5px 10px 15px #000;
+		border-radius: 5px;
+	}	
+	
   </style>
   
 </head>
@@ -77,6 +102,17 @@
 		<h3>Loading... </h3><br/>
 			<img src="img/preloader.gif" />
 		</div>
+	</div>	
+</div>
+
+<!-- Black page -->
+<div data-role="page" data-control-title="Welcome" id="page_notifikasi" >
+    
+	<div role="main" class="ui-content">
+	<div class="loading-content">
+		<h3>Notifikasi</h3><br/>
+		<div id="notif_message"></div>		
+	</div>
 	</div>	
 </div>
 
@@ -183,10 +219,17 @@
         </div>
         <div class="ui-field-contain white" data-controltype="textinput">
             <label for="textinput1">
-                Phone
+                Telepon
             </label>
             <input name="register_phone" id="register_phone" placeholder="Phone" value="" type="text">
         </div>
+		 <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="register_pinbb">
+                PIN BB
+            </label>
+            <input name="register_pinbb" id="register_pinbb" placeholder="PIN BB" value="" type="text">
+        </div>
+		
 		<button id="register-button" class="ui-btn ui-btn-b ui-icon-arrow-r ui-btn-icon-right">REGISTER</button>
        
     </div>
@@ -286,7 +329,7 @@
 		<div data-role="navbar">
 			<ul>	
 			<li>
-				<a href="#page_settings" class="ui-icon-gear ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_setting" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Pengaturan</a>
+				<a href="#page_settings" class="ui-icon-gear ui-btn-a ui-btn-icon-top show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Pengaturan</a>
 			</li>
 			</ul>
 		</div>
@@ -301,15 +344,7 @@
 		
     </div>
 	
-	<div data-theme="b" data-role="footer" class="back-footer" >
-       <div data-role="navbar">
-			<ul>
-				<li>
-				<a href="#page_login" class="ui-icon-power ui-btn-b ui-btn-icon-top show-page-loading-msg menu_page_logout" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Keluar</a>
-				</li>		
-			</ul>
-		</div><!-- /navbar -->
-    </div>
+	
 	
 	
 </div>
@@ -357,7 +392,7 @@
 	<div data-theme="b" data-role="footer" class="back-footer" >
        <div data-role="navbar">
 			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>	
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg check_new_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>	
 			</ul>
 		</div><!-- /navbar -->
     </div>
@@ -406,7 +441,7 @@
 	 <div data-theme="b" data-role="footer" class="back-footer">
        <div data-role="navbar">
 			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg check_new_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>
 				
 			</ul>
 		</div><!-- /navbar -->
@@ -431,7 +466,7 @@
 		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
 		<form id="form_search" onsubmit="return false" method="post" action="">
 		<input type="text" id="search_query" placeholder="Cari Product"/>
-		<button type="submit" class="ui-btn ui-btn-b  ui-icon-search ui-btn-icon-left">Cari</button>
+		<button type="submit" class="ui-btn ui-btn-b  ui-icon-search ui-btn-icon-left show-page-loading-msg">Cari</button>
 		<button type="button" class="ui-btn ui-btn-a menu_page_product show-page-loading-msg" id="refresh_product">Refresh</button>
 		</form>
 		<div id="product_notif"></div>
@@ -499,7 +534,7 @@
 		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
 		<form id="form_search" onsubmit="return false" method="post" action="">
 		<input type="text" id="search_query" placeholder="Cari Product"/>
-		<button type="submit" class="ui-btn ui-btn-b  ui-icon-search ui-btn-icon-left">Cari</button>
+		<button type="submit" class="ui-btn ui-btn-b  ui-icon-search ui-btn-icon-left show-page-loading-msg">Cari</button>
 		<button type="button" class="ui-btn ui-btn-a  menu_page_product_po show-page-loading-msg" id="refresh_product_po">Refresh</button>
 		</form>
 		<div id="product_po_notif"></div>
@@ -563,6 +598,7 @@
 	
 	<!-- Hidden Field -->
 	<input type="hidden" name="item_id" id="item_id" value="" />
+	<input type="hidden" name="item_category" id="item_category" value="" />
 	<input type="hidden" name="item_name" id="item_name" value="" />
 	<input type="hidden" name="item_price" id="item_price" value="" />
 	<input type="hidden" name="item_ukuran" id="item_ukuran" value="" />
@@ -620,6 +656,15 @@
 			</div>
 			<div class="ui-body ui-body-a">
 				<input name="slider-fill" id="item_qty" value="" min="" max="" step="1"  type="number">
+			</div>
+		</div>
+		
+		<div class="ui-corner-all custom-corners">
+			<div class="ui-bar ui-bar-a">
+				<h3>Catatan</h3>
+			</div>
+			<div class="ui-body ui-body-a">
+				<textarea name="item_notes" id="item_notes"> </textarea>
 			</div>
 		</div>
 		
@@ -705,7 +750,7 @@
 	<div data-theme="b" data-role="footer" class="back-footer">
        <div data-role="navbar">
 			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
 				
 			</ul>
 		</div><!-- /navbar -->
@@ -747,18 +792,26 @@
 				</div>
 		</div>
 		<br/>
-		FROM<br/>
+		DARI<br/>
 		<textarea id="dropship1_from" readonly ></textarea>
-		TO <br/>
+		KEPADA <br/>
 		<textarea  id="dropship1_to" readonly ></textarea>
+		
+		ALAMAT<br/>
+		<textarea id="dropship1_address" style="min-height:100px;width:100%" data-role="none" readonly ></textarea>
 		PROVINSI<br/>
 		<select name="dropship1_provinsi" id="dropship1_provinsi" data-role="none" readonly>
 			
 		</select><br/><br/>
 		KOTA<br/>
-		<select name="dropship1_kota" id="dropship1_kota" data-role="none" readonly>
+		<select name="dropship1_kota" id="dropship1_kota" data-role="none" readonly> 
 			
 		</select>
+		KODEPOS <br/>
+		<input type="text" id="dropship1_kodepos" value="" readonly  /><br/>
+		TELEPON PENERIMA <br/>
+		<input type="text" id="dropship1_phone" value="" readonly />
+
 		<hr/>
 		<button type="button"  class="show-page-loading-msg btn_process_dropship1" data-transition="fade" data-theme="b" data-icon="">KIRIM</button>
 		
@@ -811,10 +864,13 @@
 				</div>
 		</div>
 		<br/>
-		FROM<br/>
+		DARI<br/>
 		<textarea id="dropship2_from"></textarea>
-		TO <br/>
+		KEPADA <br/>
 		<textarea  id="dropship2_to"></textarea>
+		
+		ALAMAT<br/>
+		<textarea id="dropship2_address" style="min-height:100px;width:100%" data-role="none"  ></textarea>
 		PROVINSI<br/>
 		<select name="dropship2_provinsi" id="dropship2_provinsi" data-role="none">
 			<option value="">- PILIH PROVINSI -</option>
@@ -825,6 +881,14 @@
 			<option value="">- PILIH KOTA -</option>
 			
 		</select>
+		KODEPOS <br/>
+		<input type="text" id="dropship2_kodepos" value="" /><br/>
+		TELEPON PENERIMA <br/>
+		<input type="text" id="dropship2_phone" value="" />
+		
+		
+		
+		
 		<hr/>
 		<button type="button"  class="show-page-loading-msg btn_process_dropship2" data-transition="fade" data-theme="b" data-icon="">KIRIM</button>
 		
@@ -952,6 +1016,8 @@
 		<p>Dikirim ke : <span class="order_detail_to"></span></p>
 		<p>Kota : <span class="order_detail_kota"></span></p>
 		<p>Provinsi : <span class="order_detail_provinsi"></span></p>
+		<p>Status Pengiriman : <span class="order_detail_shipping_status"></span></p>
+		<p>Resi : <span class="order_detail_resi"></span></p>
 		<hr/>
 		<h3>ITEM PESANAN</h3>
 		<p><span class="order_detail_item_pesanan"></span></p>
@@ -1034,7 +1100,7 @@
 	<div data-theme="b" data-role="footer" class="back-footer">
        <div data-role="navbar">
 			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
 				
 				
 			</ul>
@@ -1143,10 +1209,17 @@
     <div role="main" class="ui-content">
 		
 		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
+		<h4>Info</h4>
+		<textarea id="info_informasi"  style="min-height:100px;width:100%" data-role="none" readonly>
 		
+		</textarea><br/>
+		
+		<h4>Kontak</h4>
 		<textarea id="info_kontak"  style="min-height:100px;width:100%" data-role="none" readonly>
 		
 		</textarea><br/>
+		
+		<h4>Rekening</h4>
 		<textarea id="info_rekening"  style="min-height:100px;width:100%" data-role="none" readonly>
 		
 		</textarea>
@@ -1157,7 +1230,7 @@
        <div data-role="navbar">
 			<ul>
 				
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
 				
 			</ul>
 		</div><!-- /navbar -->
@@ -1166,13 +1239,46 @@
 
 
 <!-- SETTINGS -->
-<div data-role="page" data-control-title="Cart" id="page_settings" >
+<div data-role="page" data-control-title="Pengaturan" id="page_settings" >
+	
+    <div data-theme="b" data-role="header">
+       <div data-role="navbar">
+			<ul>
+
+			<li><a href="#" class="ui-btn ui-icon-home ui-btn-a ui-btn-icon-top">Pengaturan</a></li>
+				
+			</ul>
+		</div><!-- /navbar -->
+    </div>
+    <div role="main" class="ui-content">
+		
+		<center><img src="img/logo.png" width="100%"/></center><h4 class="ui-bar ui-bar-b info-login-status" ></h4>
+		<h3>Data Pesanan</h3>
+		
+      	 <ul data-role="listview" data-inset="true">
+		   <li><a href="#" class="menu_page_setting show-page-loading-msg" rel="1" title="Edit Profile">Edit Profile</a></li>
+		   <li><a href="#" class="menu_page_logout show-page-loading-msg" rel="1"  title="Logout">Logout</a></li>
+		</ul>
+    </div>
+	
+	 <div data-theme="b" data-role="footer" class="footer">
+       <div data-role="navbar">
+			<ul>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l ui-btn-icon-top show-page-loading-msg check_new_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Back</a></li>
+				
+			</ul>
+		</div><!-- /navbar -->
+    </div>
+</div>
+
+<!-- SETTING PROFILE -->
+<div data-role="page" data-control-title="Pengaturan profile" id="page_settings_profile" >
 
     <div data-theme="b" data-role="header">
        <div data-role="navbar">
 			<ul>
 				
-				<li><a href="#" class="ui-btn ui-icon-home ui-btn-a ui-btn-icon-top">Settings</a></li>
+				<li><a href="#" class="ui-btn ui-icon-home ui-btn-a ui-btn-icon-top">Pengaturan Profil</a></li>
 				
 			</ul>
 		</div><!-- /navbar -->
@@ -1195,7 +1301,8 @@
 			<input name="update_email" id="update_email" value="" type="text">
 			<label for="update_phone">Handphone:</label>
 			<input name="update_phone" id="update_phone" value="" type="text">
-			
+			<label for="update_pinbb">PIN BB:</label>
+			<input name="update_pinbb" id="update_pinbb" value="" type="text">
 			<label for="update_alamat">Alamat:</label>
 			<textarea name="update_alamat" id="update_alamat" ></textarea>
 			
@@ -1215,13 +1322,13 @@
 		<div data-role="navbar" data-iconpos="top">
             <ul>			
                 <li>
-                    <a href="#page_dashboard" data-transition="fade" data-theme="a" data-icon="">
+                    <a href="#page_settings" data-transition="fade" data-theme="a" data-icon="">
                         Cancel
                     </a>
                 </li>
                 
 				 <li>
-                    <button type="button" class="btn_update_setting" data-transition="fade" data-theme="b" data-icon="">
+                    <button type="button" class="btn_update_setting show-page-loading-msg"  data-theme="b" data-icon="">
                       Update
                     </button>
                 </li>
@@ -1233,7 +1340,7 @@
 	<div data-theme="b" data-role="footer" class="back-footer">
        <div data-role="navbar">
 			<ul>
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
 			
 			</ul>
 		</div><!-- /navbar -->
@@ -1267,11 +1374,17 @@
        <div data-role="navbar">
 			<ul>
 				
-				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top">Back</a></li>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-b ui-icon-arrow-l  ui-btn-icon-top check_new_message">Back</a></li>
 				
 			</ul>
 		</div><!-- /navbar -->
     </div>
+</div>
+
+<div id="overlay-loading">
+	<div class="content-loading">
+	Loading... 
+	</div>
 </div>
 
 </body>
