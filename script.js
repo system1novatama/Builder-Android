@@ -1,14 +1,13 @@
-	
-	var shop_name = "Princess Bee"; // NAMA TOKO ONLINE
-	var domain = "http://princess-bee.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Baju Grosiran"; // NAMA TOKO ONLINE
+	var domain = "http://olshopbg.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/PrincessBee"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "9be479731d5fdf9b472e1ff10d1ed6a2"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/BajuGrosiran"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "ad76fe60d0c1cab3f53be9edb79292b5"; // ISI DENGAN TOKEN 
 	
-	var cart_item_id = new Array();
+var cart_item_id = new Array();
 	var cart_item_qty = new Array();
 	var cart_item_price = new Array();
 	var cart_item_subtotal = new Array();
