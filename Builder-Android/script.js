@@ -1,18 +1,32 @@
-
-	var shop_name = "DIVI"; // NAMA TOKO ONLINE
-	var domain = "http://divishoes.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Baim56sportstore"; // NAMA TOKO ONLINE
+	var domain = "http://baim-56sportstorenfashion.com/mobile/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/divishoes"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "dc13fc2090072eec36ab33acf3e49a83"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Baim56sportstore"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "bc00488af3f32c38116eabaf854a9311"; // ISI DENGAN TOKEN 
 	
-var cart_item_id = new Array();
+	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
 	var cart_item_price = new Array();
 	var cart_item_subtotal = new Array();
 	var cart_item_weight = new Array();
+
+	var current_page = "";
+
+	$(document).on("pageshow", function (e, data) {
+	    var page = $.mobile.activePage.attr("id");
+	    current_page = page;
+	    //alert(page);
+	});
+
+	$( document ).bind( 'mobileinit', function(){
+	  $.mobile.loader.prototype.options.text = "loading";
+	  $.mobile.loader.prototype.options.textVisible = false;
+	  $.mobile.loader.prototype.options.theme = "a";
+	  $.mobile.loader.prototype.options.html = "";
+	});
 	
 	$( document ).on( "click", ".show-page-loading-msg", function() {
 		var $this = $( this ),
@@ -421,8 +435,17 @@ var cart_item_id = new Array();
 				}
 				else
 				{
-					window.location = "#page_login";
-					$("#login_message").html("<div class='alert-success'>Registrasi Berhasil, silahkan konfirmasi Admin kami untuk aktivasi! Anda terdaftar dengan <br/>Customer ID : "+data.customer_id+" <br/> Password : "+data.password+"</div>");
+					var login_status = 1;
+					localStorage.setItem('Login',login_status);
+					localStorage.setItem('Customer_id',data.customer_id);
+					localStorage.setItem('Customer_name',register_name);
+					localStorage.setItem('Customer_email',register_email);
+					
+					window.location = "#page_notifikasi";
+					$("#notif_message").html("<div class='alert-success'>Registrasi Berhasil, silahkan konfirmasi Admin kami untuk aktivasi! Anda terdaftar dengan <br/>Customer ID : "+data.customer_id+" <br/> Password : "+data.password+"</div>");
+					
+					// window.location = "#page_login";
+					// $("#login_message").html("<div class='alert-success'>Registrasi Berhasil, silahkan konfirmasi Admin kami untuk aktivasi! Anda terdaftar dengan <br/>Customer ID : "+data.customer_id+" <br/> Password : "+data.password+"</div>");
 				}	
 				 
 			}, "json");
@@ -438,6 +461,8 @@ var cart_item_id = new Array();
 	// GET LIST PRODUCT
 	function get_list_product(page)
 	{
+
+		
 		var customer_id = $(".customer_id").html();
 		var page = parseInt(page);
 		var prev_page = page - 1;
@@ -489,7 +514,7 @@ var cart_item_id = new Array();
 				}
 				
 				$("#page_product_prev").attr("rel",prev_page);
-				$("#page_product_current").html(page);
+				$("#page_product_current").attr("value",page);
 				$("#page_product_next").attr("rel",next_page);
 				
 				window.location = "#page_product";
@@ -499,7 +524,7 @@ var cart_item_id = new Array();
 
 	// ACTION LIST PRODUCT CATEGORY FROM MENU DASHBOARD
 	// Ready
-	$(document).on('pageinit',function(event){
+	//$(document).on('pageinit',function(event){
 		$( document ).on( "click", ".menu_page_product_category", function() {
 
 				var customer_id = $(".customer_id").html();
@@ -564,7 +589,8 @@ var cart_item_id = new Array();
 							}
 							
 							$("#page_product_category_prev").attr("rel",prev_page);
-							$("#page_product_category_current").html(page);
+							//$("#page_product_category_current").attr("value",page);
+							$("#page_product_category_current").attr("value",page);
 							$("#page_product_category_next").attr("rel",next_page);
 							
 							window.location = "#page_product_category";
@@ -579,19 +605,21 @@ var cart_item_id = new Array();
 				}, "json");
 		
 		});
-	});
-	
-	//PO
-	$(document).on('pageinit',function(event){
-		$( document ).on( "click", ".menu_page_product_category_po", function() {
 
-				var customer_id = $(".customer_id").html();
-				var page = $(this).attr("rel");
+		// HANDLING ENTER SEARCH PAGE
+		$("#page_product_category_current").live('keyup', function(event) {             
+		    if (event.keyCode === 13) {
+		        //alert($("#page_product_category_current").val());
+		        $.mobile.loading( "show" );
+
+		        var customer_id = $(".customer_id").html();
+				var page = $("#page_product_category_current").val();
 				var page = parseInt(page);
 				var prev_page = page - 1;
 				var next_page = page + 1;
-	
-				$.post(base_url+"/get_list_product_category",{token: token, tipe: 'PO', page: page , customer_id: customer_id},
+				
+					
+				$.post(base_url+"/get_list_product_category",{token: token, tipe: 'Ready Stock',page: page , customer_id: customer_id},
 				 
 				   function(data){
 					
@@ -627,6 +655,91 @@ var cart_item_id = new Array();
 						var categories = data.category;
 						var categories_length = categories.length;
 						
+						
+							for(var i = 0; i < 10; i++)  
+							{	
+								
+								var listing = "#content_list_category #list_"+i;
+								
+								if(i < categories_length)
+								{	
+									$(listing).show();
+									$(listing+" a").attr("title",categories[i].id);
+									$(listing+" a").html(categories[i].name);
+								}
+								else
+								{
+									$(listing).hide();
+								}
+							}
+							
+							$("#page_product_category_prev").attr("rel",prev_page);
+							//$("#page_product_category_current").attr("value",page);
+							$("#page_product_category_current").attr("value",page);
+							$("#page_product_category_next").attr("rel",next_page);
+							
+							window.location = "#page_product_category";
+							$.mobile.loading( "hide" );
+
+					}
+					else
+					{		
+						get_list_product_category(prev_page);
+					}	
+					
+					
+				}, "json");
+		        event.preventDefault();
+		    }
+		});
+	//});
+	
+	//PO
+	//$(document).on('pageinit',function(event){
+		$( document ).on( "click", ".menu_page_product_category_po", function() {
+
+				var customer_id = $(".customer_id").html();
+				var page = $(this).attr("rel");
+				var page = parseInt(page);
+				var prev_page = page - 1;
+				var next_page = page + 1;
+	
+				$.post(base_url+"/get_list_product_category",{token: token, tipe: 'PO', page: page , customer_id: customer_id},
+				 
+				   function(data){
+					
+					/* check */
+					if(data.status == 'Invalid Token')
+					{
+						check_token();
+					}
+				
+					if(data.status == 'OFF')
+					{
+						check_status_aplikasi(data.message);
+					}
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
+					if(data.status == 'Member Not Active')
+					{
+						check_status_member();
+					}
+					/* end check */ 
+					
+					if(data.status == 'Error')
+				    {
+						$.mobile.loading( "hide" );
+						alert("No Data");
+						return false;
+					}	
+					
+					if(data.status == 'Success')
+				    {
+						var categories = data.category;
+						var categories_length = categories.length;
+						
 						for(var i = 0; i < 10; i++)  
 						{	
 							
@@ -645,7 +758,7 @@ var cart_item_id = new Array();
 						}
 						
 						$("#page_product_category_prev_po").attr("rel",prev_page);
-						$("#page_product_category_current_po").html(page);
+						$("#page_product_category_current_po").attr("value",page);
 						$("#page_product_category_next_po").attr("rel",next_page);
 						
 						window.location = "#page_product_category_po";
@@ -660,13 +773,98 @@ var cart_item_id = new Array();
 				}, "json");
 		
 		});
-	});
+	// HANDLING ENTER SEARCH PAGE
+		$("#page_product_category_current_po").live('keyup', function(event) {             
+		    if (event.keyCode === 13) {
+		        //alert($("#page_product_category_current_po").val());
+		        $.mobile.loading( "show" );
+
+		        var customer_id = $(".customer_id").html();
+				var page = $("#page_product_category_current_po").val();
+				var page = parseInt(page);
+				var prev_page = page - 1;
+				var next_page = page + 1;
+	
+				$.post(base_url+"/get_list_product_category",{token: token, tipe: 'PO', page: page , customer_id: customer_id},
+				 
+				   function(data){
+					
+					/* check */
+					if(data.status == 'Invalid Token')
+					{
+						check_token();
+					}
+				
+					if(data.status == 'OFF')
+					{
+						check_status_aplikasi(data.message);
+					}
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
+					if(data.status == 'Member Not Active')
+					{
+						check_status_member();
+					}
+					/* end check */ 
+					
+					if(data.status == 'Error')
+				    {
+						$.mobile.loading( "hide" );
+						alert("No Data");
+						return false;
+					}	
+					
+					if(data.status == 'Success')
+				    {
+						var categories = data.category;
+						var categories_length = categories.length;
+						
+						for(var i = 0; i < 10; i++)  
+						{	
+							
+							var listing = "#content_list_category #list_"+i;
+							
+							if(i < categories_length)
+							{	
+								$(listing).show();
+								$(listing+" a").attr("title",categories[i].id);
+								$(listing+" a").html(categories[i].name);
+							}
+							else
+							{
+								$(listing).hide();
+							}
+						}
+						
+						$("#page_product_category_prev_po").attr("rel",prev_page);
+						$("#page_product_category_current_po").attr("value",page);
+						$("#page_product_category_next_po").attr("rel",next_page);
+						
+						window.location = "#page_product_category_po";
+						$.mobile.loading( "hide" );
+						
+					}
+					else
+					{		
+						get_list_product_category(prev_page);
+					}	
+					
+					
+				}, "json");
+		        event.preventDefault();
+		    }
+		});
+	//});
 
 	// ACTION LIST PRODUCT FROM MENU DASHBOARD
 	// Ready
 	
 	$( document ).on( "click", ".menu_page_product", function() {
 		
+
+		$.mobile.loading( "show" );
 		$("#product_notif").html("");
 		
 		var customer_id = $(".customer_id").html();
@@ -732,13 +930,25 @@ var cart_item_id = new Array();
 							{
 								var harga_lama = numeral(item_harga_lama).format('0.00');
 								var harga = numeral(item[i].harga).format('0.00');
-								$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								//
+								if(item[i].view_stock=="1"){
+									$(listing+" p").html("Stock: "+item[i].total_stock+" , <strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								}else{
+									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								}
+								
 								
 							}
 							else
 							{
 								var harga = numeral(item[i].harga).format('0.00');
-								$(listing+" p").html("Rp."+harga);
+								if(item[i].view_stock=="1"){
+									$(listing+" p").html("Stock: "+item[i].total_stock+" , Rp."+harga);
+								}else{
+									$(listing+" p").html("Rp."+harga);
+								}
+								//
+								
 							}	
 							
 							$(listing+" a").attr("rel",item[i].product_id);
@@ -749,12 +959,17 @@ var cart_item_id = new Array();
 						}
 					}
 					
+					$("#info_page_product").attr("value",page);
 					$("#info_page_product").html(page);
+
 					$("#info_total_page_product").html(data.total_page);
 					
 					$("#page_product_prev").attr("rel",prev_page);
 					$("#page_product_prev").attr("title",category);
-					$("#page_product_current").html(page);
+
+					$("#page_product_current").attr("value",page);
+					$("#page_product_current").attr("title",category);
+
 					$("#page_product_next").attr("rel",next_page);
 					$("#page_product_next").attr("title",category);
 					
@@ -762,6 +977,7 @@ var cart_item_id = new Array();
 					$("#refresh_product").attr("title",category);
 					
 					window.location = "#page_product";
+					$.mobile.loading("hide");
 					
 				}
 				else if(data.status == 'Failed')
@@ -771,14 +987,134 @@ var cart_item_id = new Array();
 				
 			}, "json");
 			
-			$.mobile.loading( "hide" );
+			//$.mobile.loading( "hide" );
 	
 	});
+
+	// HANDLING ENTER SEARCH PAGE
+	$("#page_product_current").live('keyup', function(event) {             
+	    if (event.keyCode === 13) {
+	        //alert($("#page_product_current").val());
+	        $.mobile.loading( "show" );
+			$("#product_notif").html("");
+			
+			var customer_id = $(".customer_id").html();
+			var category = $(this).attr("title");
+			 
+			var page = $("#page_product_current").val();
+			var page = parseInt(page);
+			var prev_page = page - 1;
+			var next_page = page + 1;
+
+			//alert(category+" "+page);
+
+				$.post(base_url+"/get_list_product", {token: token, tipe: 'Ready Stock', page: page, category: category, customer_id: customer_id},
+				   function(data){
+
+					/* check */
+					if(data.status == 'Invalid Token')
+					{
+						check_token();
+					}
+				
+					if(data.status == 'OFF')
+					{
+						check_status_aplikasi(data.message);
+					}
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
+					if(data.status == 'Member Not Active')
+					{
+						check_status_member();
+					}
+					/* end check */ 
+				   
+					if(data.status == 'Not_found')
+					{
+						$("#product_notif").html("<center>Data tidak ada</center>");
+						$(".product_detail_list").hide();	
+						$("#page_product_current").html("1");
+						
+						window.location = "#page_product";
+						
+					}
+					else	
+					if(data.status == 'Success')
+					{
+						var item = data.product;
+						var item_length = item.length;
+						$("#product_notif").html("");
+						for(var i = 0; i < 20; i++)  
+						{	
+							
+							var listing = "#list_product #list_"+i;
+							
+							if(i < item_length)
+							{	
+								$(listing).show();
+								$(listing+" img").attr("src",item[i].img_thumbnail); 
+								$(listing+" h2").html(item[i].name_item);
+								
+								var item_harga_lama = parseFloat(item[i].harga_lama);
+								
+								if(item_harga_lama > 0)
+								{
+									var harga_lama = numeral(item_harga_lama).format('0.00');
+									var harga = numeral(item[i].harga).format('0.00');
+									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									
+								}
+								else
+								{
+									var harga = numeral(item[i].harga).format('0.00');
+									$(listing+" p").html("Rp."+harga);
+								}	
+								
+								$(listing+" a").attr("rel",item[i].product_id);
+							}
+							else
+							{
+								$(listing).hide();
+							}
+						}
+						
+						$("#info_page_product").attr("value",page);
+						$("#info_page_product").html(page);
+						$("#info_total_page_product").html(data.total_page);
+						
+						$("#page_product_prev").attr("rel",prev_page);
+						$("#page_product_prev").attr("title",category);
+						$("#page_product_current").attr("value",page);
+						$("#page_product_next").attr("rel",next_page);
+						$("#page_product_next").attr("title",category);
+						
+						$("#refresh_product").attr("rel",1);
+						$("#refresh_product").attr("title",category);
+						
+						window.location = "#page_product";
+						$.mobile.loading("hide");
+						
+					}
+					else if(data.status == 'Failed')
+					{		
+						get_list_product(prev_page);
+					}	
+					
+				}, "json");
+
+	        event.preventDefault();
+	    }
+	});
+
 	
 	
 	// Ready (function)
 	function get_list_product_ready(category_id)
 	{
+		$.mobile.loading( "show" );
+
 		$("#product_notif").html("");
 		
 		var customer_id = $(".customer_id").html();
@@ -861,12 +1197,13 @@ var cart_item_id = new Array();
 						}
 					}
 					
+					$("#info_page_product").attr("value",page);
 					$("#info_page_product").html(page);
 					$("#info_total_page_product").html(data.total_page);
 					
 					$("#page_product_prev").attr("rel",prev_page);
 					$("#page_product_prev").attr("title",category);
-					$("#page_product_current").html(page);
+					$("#page_product_current").attr("value",page);
 					$("#page_product_next").attr("rel",next_page);
 					$("#page_product_next").attr("title",category);
 					
@@ -956,13 +1293,25 @@ var cart_item_id = new Array();
 							{
 								var harga_lama = numeral(item_harga_lama).format('0.00');
 								var harga = numeral(item[i].harga).format('0.00');
-								$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								//
+								if(item[i].view_stock=="1"){
+									$(listing+" p").html("Stock: "+item[i].total_stock+" , <strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								}else{
+									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+								}
+								
 								
 							}
 							else
 							{
 								var harga = numeral(item[i].harga).format('0.00');
-								$(listing+" p").html("Rp."+harga);
+								if(item[i].view_stock=="1"){
+									$(listing+" p").html("Stock: "+item[i].total_stock+" , Rp."+harga);
+								}else{
+									$(listing+" p").html("Rp."+harga);
+								}
+								//
+								
 							}	
 							
 							$(listing+" a").attr("rel",item[i].product_id);
@@ -973,12 +1322,16 @@ var cart_item_id = new Array();
 						}
 					}
 					
+					$("#info_page_product_po").attr("value",page);
 					$("#info_page_product_po").html(page);
 					$("#info_total_page_product_po").html(data.total_page);
 					
 					$("#page_product_prev_po").attr("rel",prev_page);
 					$("#page_product_prev_po").attr("title",category);
-					$("#page_product_current_po").html(page);
+
+					$("#page_product_current_po").attr("value",page);
+					$("#page_product_current_po").attr("title",category);
+
 					$("#page_product_next_po").attr("rel",next_page);
 					$("#page_product_next_po").attr("title",category);
 					
@@ -999,12 +1352,133 @@ var cart_item_id = new Array();
 			$.mobile.loading( "hide" );
 	
 	});
+	// HANDLING ENTER SEARCH PAGE
+	$("#page_product_current_po").live('keyup', function(event) {             
+	    if (event.keyCode === 13) {
+	        //alert($("#page_product_current_po").val());
+	        $.mobile.loading( "show" );
+			$("#product_notif").html("");
+			
+			var customer_id = $(".customer_id").html();
+			var category = $(this).attr("title");
+			 
+			var page = $("#page_product_current_po").val();
+			var page = parseInt(page);
+			var prev_page = page - 1;
+			var next_page = page + 1;
+
+				$.post(base_url+"/get_list_product", {token: token, tipe: 'PO', page: page, category: category, customer_id: customer_id},
+				   function(data){
+					
+					/* check */
+					if(data.status == 'Invalid Token')
+					{
+						check_token();
+					}
+				
+					if(data.status == 'OFF')
+					{
+						check_status_aplikasi(data.message);
+					}
+					if(data.status == 'Member Not Found')
+					{
+						check_status_member_not_found();
+					}
+					if(data.status == 'Member Not Active')
+					{
+						check_status_member();
+					}
+					/* end check */ 
+					
+					if(data.status == 'Not_found')
+					{
+						$("#product_po_notif").html("<center>Data tidak ada</center>");
+						$(".product_detail_list").hide();	
+						$("#page_product_current").html("1");
+						
+						window.location = "#page_product_po";
+						
+					}
+					else	
+					
+				   if(data.status == 'Success')
+				   {
+						var item = data.product;
+						var item_length = item.length;
+						$("#product_notif").html("");
+						for(var i = 0; i < 20; i++)  
+						{	
+							
+							var listing = "#list_product #list_"+i;
+							
+							if(i < item_length)
+							{	
+								$(listing).show();
+								$(listing+" img").attr("src",item[i].img_thumbnail); 
+								$(listing+" h2").html(item[i].name_item);
+								
+								var item_harga_lama = parseFloat(item[i].harga_lama);
+								
+								if(item_harga_lama > 0)
+								{
+									var harga_lama = numeral(item_harga_lama).format('0.00');
+									var harga = numeral(item[i].harga).format('0.00');
+									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									
+								}
+								else
+								{
+									var harga = numeral(item[i].harga).format('0.00');
+									$(listing+" p").html("Rp."+harga);
+								}	
+								
+								$(listing+" a").attr("rel",item[i].product_id);
+							}
+							else
+							{
+								$(listing).hide();
+							}
+						}
+						
+						$("#info_page_product_po").attr("value",page);
+						$("#info_page_product_po").html(page);
+						$("#info_total_page_product_po").html(data.total_page);
+						
+						$("#page_product_prev_po").attr("rel",prev_page);
+						$("#page_product_prev_po").attr("title",category);
+
+						$("#page_product_current_po").attr("value",page);
+						$("#page_product_current_po").attr("title",category);
+
+						$("#page_product_next_po").attr("rel",next_page);
+						$("#page_product_next_po").attr("title",category);
+						
+						$("#refresh_product_po").attr("rel",1);
+						$("#refresh_product_po").attr("title",category);
+						
+						window.location = "#page_product_po";
+						$.mobile.loading("hide");
+						
+					}
+					else if(data.status == 'Failed')
+					{		
+						get_list_product(prev_page);
+					}	
+					
+					
+				}, "json");
+			
+
+	        event.preventDefault();
+	    }
+	});
 	
 
 	
 	// PO (function)
 	function get_list_product_po(category_id)
-	{
+	{		
+			$.mobile.loading( "show" );
 			$("#product_po_notif").html("");
 			
 			var customer_id = $(".customer_id").html();
@@ -1088,12 +1562,13 @@ var cart_item_id = new Array();
 							}
 						}
 						
+						$("#info_page_product_po").attr("value",page);
 						$("#info_page_product_po").html(page);
 						$("#info_total_page_product_po").html(data.total_page);
 						
 						$("#page_product_prev_po").attr("rel",prev_page);
 						$("#page_product_prev_po").attr("title",category);
-						$("#page_product_current_po").html(page);
+						$("#page_product_current_po").attr("value",page);
 						$("#page_product_next_po").attr("rel",next_page);
 						$("#page_product_next_po").attr("title",category);
 						
@@ -1172,14 +1647,26 @@ var cart_item_id = new Array();
 								{
 									var harga_lama = numeral(item_harga_lama).format('0.00');
 									var harga = numeral(item[i].harga).format('0.00');
-									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									//
+									if(item[i].view_stock=="1"){
+										$(listing+" p").html("Stock: "+item[i].total_stock+" , <strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									}else{
+										$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									}
+									
 									
 								}
 								else
 								{
 									var harga = numeral(item[i].harga).format('0.00');
-									$(listing+" p").html("Rp."+harga);
-								}	
+									if(item[i].view_stock=="1"){
+										$(listing+" p").html("Stock: "+item[i].total_stock+" , Rp."+harga);
+									}else{
+										$(listing+" p").html("Rp."+harga);
+									}
+									//
+									
+								}		
 								
 								$(listing+" a").attr("rel",item[i].product_id);
 							}
@@ -1190,10 +1677,11 @@ var cart_item_id = new Array();
 						}
 						
 						
+						$("#info_page_product").attr("value",page);
 						$("#info_page_product").html(page);
 						$("#info_total_page_product").html(data.total_page);
 						$("#page_product_prev").attr("rel",prev_page);
-						$("#page_product_current").html(page);
+						$("#page_product_current").attr("value",page);
 						$("#page_product_next").attr("rel",next_page);
 						
 						window.location = "#page_product";
@@ -1274,13 +1762,25 @@ var cart_item_id = new Array();
 								{
 									var harga_lama = numeral(item_harga_lama).format('0.00');
 									var harga = numeral(item[i].harga).format('0.00');
-									$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									//
+									if(item[i].view_stock=="1"){
+										$(listing+" p").html("Stock: "+item[i].total_stock+" , <strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									}else{
+										$(listing+" p").html("<strike><font color='red'>Rp."+harga_lama+"</font></strike> Rp."+harga);
+									}
+									
 									
 								}
 								else
 								{
 									var harga = numeral(item[i].harga).format('0.00');
-									$(listing+" p").html("Rp."+harga);
+									if(item[i].view_stock=="1"){
+										$(listing+" p").html("Stock: "+item[i].total_stock+" , Rp."+harga);
+									}else{
+										$(listing+" p").html("Rp."+harga);
+									}
+									//
+									
 								}	
 								
 								$(listing+" a").attr("rel",item[i].product_id);
@@ -1291,11 +1791,12 @@ var cart_item_id = new Array();
 							}
 						}
 						
+						$("#info_page_product_po").attr("value",page);
 						$("#info_page_product_po").html(page);
 						$("#info_total_page_product_po").html(data.total_page);
 						
 						$("#page_product_prev").attr("rel",prev_page);
-						$("#page_product_current").html(page);
+						$("#page_product_current").attr("value",page);
 						$("#page_product_next").attr("rel",next_page);
 						
 						window.location = "#page_product";
@@ -1430,7 +1931,9 @@ var cart_item_id = new Array();
 		var file_name = $("#item_name").val();
 		var file_price = $("#item_price").val();
 		
-		download(file_img, dir_image, admin_url);
+		//download_lagi(file_img, dir_image, admin_url);
+		//download(file_img, dir_image, admin_url);
+		download_lagi2(domain+"media/images/large/"+file_img);
 		
 	});
 
@@ -1609,9 +2112,13 @@ var cart_item_id = new Array();
 				{
 					$("#listing_order").append("<label><input name='checkbox-0' type='checkbox' value='"+order_item[i].order_item_id+"'>"+order_item[i].prod_name+" - "+order_item[i].variant+" - ("+order_item[i].qty+")</label>");
 				}
+
+				window.location = "#page_myorder";
 			}
 			else
 			{
+				alert("No Data");
+				$.mobile.loading( "hide" );
 				$("#listing_order").html("<center>No Data</center>");
 			}	
 			
@@ -1625,7 +2132,7 @@ var cart_item_id = new Array();
 			
 		}, "json");
 		
-		window.location = "#page_myorder";
+		
 	});	
 	
 	
@@ -1820,144 +2327,6 @@ var cart_item_id = new Array();
        
 	});	
 	
-	$( document ).on( "submit", "#form_get_tarif1", function() {
-		
-		var customer_id = $(".customer_id").html();
-		var keyword = $("#get_tarif_text1").val();
-		$("#area_tarif1").html("");
-		
-		if(keyword.length >= 3)
-		{
-			$("#area_tarif1").html("Loading...");
-			$.post(base_url+"/get_tarif_data", {token: token,customer_id: customer_id, keyword: keyword},
-
-			function(data){
-
-				if(data.status == 'Invalid Token')
-				{
-					check_token();
-				}
-				
-				if(data.status == 'Member Not Found')
-				{
-					check_member_not_found();
-				}
-				
-				if(data.status == 'Member Not Active')
-				{
-					check_member_not_active();
-				}
-			
-				if(data != 0)
-				{
-					$("#area_tarif1").html("");	
-					for(var i=0;i<data.length;i++)
-					{
-						
-						
-						$("#area_tarif1").append("<a style='display:block;cursor:pointer;padding:5px;margin:5px;border:1px solid #333' onclick=get_tarif_id1('"+data[i].tarif_id+"')  class='getter_tarif'  rel='"+data[i].tarif_id+"'>"+data[i].kota+" - "+data[i].kecamatan+"</a>");
-					}	
-					
-					
-					$("#area_tarif1").show();
-				}
-				else
-				{
-					$("#area_tarif1").html("Tidak ada data");
-				}
-			
-			}, "json");
-			
-		}
-		else
-		{
-			alert("Minimal 3 karakter");
-			$("#area_tarif1").hide();
-		}
-		
-		$.mobile.loading( "hide" );
-		return false;
-		
-		
-	});
-	
-	$( document ).on( "click", "#btn_data_tarif_pengiriman1", function() {
-		
-		$("#get_tarif_text1").val("");
-		
-	});
-
-
-	function get_tarif_id1(tarif_id)
-	{
-		var customer_id = $(".customer_id").html();
-		
-		$("#tarif_id1").val(tarif_id);
-		
-		$.post(base_url+"/get_tarif_data_detail", { token: token,customer_id: customer_id, tarif_id: tarif_id},
-			function(data){
-			
-			if(data.status == 'Invalid Token')
-			{
-				check_token();
-			}
-			
-			if(data.status == 'Member Not Found')
-			{
-				check_member_not_found();
-			}
-			
-			if(data.status == 'Member Not Active')
-			{
-				check_member_not_active();
-			}
-			
-			$("#dropship1_tarif").val(data.kota_kabupaten+" - "+data.kecamatan);
-			
-			$("#dropship1_jenis_tarif").html("");
-			
-			var isi_jenis_tarif = "<option selected='selected'>- Pilih Tarif -</option><option value='"+data.coding+"-reg-"+data.reg+"'>REG ("+data.reg+")</option><option value='"+data.coding+"-yes-"+data.yes+"'>YES ("+data.yes+")</option><option value='"+data.coding+"-oke-"+data.oke+"'>OKE ("+data.oke+")</option>";
-			
-			$("#dropship1_jenis_tarif").append(isi_jenis_tarif);
-			
-			/*
-			var total_weight = Math.ceil($('#dropship1_weight').val());
-			var total_shipping_fee = parseFloat(total_weight) * parseFloat(data.tarif_oke);
-			var total_before = $("#dropship1_total").val();
-			var total_payment = parseFloat(total_before) + parseFloat(total_shipping_fee);
-			$(".total_dropship1_ongkir").html(total_shipping_fee);
-
-			$(".total_dropship1_all").html(total_payment);		
-			*/
-			
-		}, "json");	
-		
-		
-		$("#area_tarif1").hide();
-		
-		window.location = "#page_dropship1";
-		
-	}
-	
-	function kalkulasi_total_dropship1(harga_tarif)
-	{
-		
-		
-		var harga_tarif = harga_tarif.split("-");
-		
-		var total_weight = Math.ceil($('#dropship1_weight').val());
-		var total_shipping_fee = parseFloat(total_weight) * parseFloat(harga_tarif[2]);
-		var total_before = $("#dropship1_total").val();
-		var total_payment = parseFloat(total_before) + parseFloat(total_shipping_fee);
-		$(".total_dropship1_ongkir").html(total_shipping_fee);
-
-		$(".total_dropship1_all").html(total_payment);
-		$("#dropship1_tarif_id").val(harga_tarif[0]);
-		$("#dropship1_tarif_tipe").val(harga_tarif[1]);
-		
-	}
-	
-	
 	// MY DROPSHIP (ALAMAT LAIN)
 	$( document ).on( "click", ".btn_dropship2", function() {
 		
@@ -2074,146 +2443,6 @@ var cart_item_id = new Array();
        
 	});	
 	
-	/* Tarif dropship alamat lain*/
-	$( document ).on( "submit", "#form_get_tarif2", function() {
-		
-		var customer_id = $(".customer_id").html();
-		var keyword = $("#get_tarif_text2").val();
-		$("#area_tarif2").html("");
-		
-		if(keyword.length >= 3)
-		{
-			$("#area_tarif2").html("Loading...");
-			$.post(base_url+"/get_tarif_data", {token: token,customer_id: customer_id, keyword: keyword},
-
-			function(data){
-
-				if(data.status == 'Invalid Token')
-				{
-					check_token();
-				}
-				
-				if(data.status == 'Member Not Found')
-				{
-					check_member_not_found();
-				}
-				
-				if(data.status == 'Member Not Active')
-				{
-					check_member_not_active();
-				}
-			
-				if(data != 0)
-				{
-					$("#area_tarif2").html("");	
-					for(var i=0;i<data.length;i++)
-					{
-						
-						
-						$("#area_tarif2").append("<a style='display:block;cursor:pointer;padding:5px;margin:5px;border:1px solid #333' onclick=get_tarif_id2('"+data[i].tarif_id+"')  class='getter_tarif'  rel='"+data[i].tarif_id+"'>"+data[i].kota+" - "+data[i].kecamatan+"</a>");
-					}	
-					
-					
-					$("#area_tarif2").show();
-				}
-				else
-				{
-					$("#area_tarif2").html("Tidak ada data");
-				}
-			
-			}, "json");
-			
-		}
-		else
-		{
-			alert("Minimal 3 karakter");
-			$("#area_tarif2").hide();
-		}
-		
-		$.mobile.loading( "hide" );
-		return false;
-		
-		
-	});
-	
-	$( document ).on( "click", "#btn_data_tarif_pengiriman2", function() {
-		
-		$("#get_tarif_text2").val("");
-		
-	});
-
-
-	function get_tarif_id2(tarif_id)
-	{
-		var customer_id = $(".customer_id").html();
-		$("#tarif_id2").val(tarif_id);
-		
-		$.post(base_url+"/get_tarif_data_detail", { token: token,customer_id: customer_id, tarif_id: tarif_id},
-			function(data){
-			
-			if(data.status == 'Invalid Token')
-			{
-				check_token();
-			}
-			
-			if(data.status == 'Member Not Found')
-			{
-				check_member_not_found();
-			}
-			
-			if(data.status == 'Member Not Active')
-			{
-				check_member_not_active();
-			}
-			
-			$("#dropship2_tarif").val(data.kota_kabupaten+" - "+data.kecamatan);
-			
-			$("#dropship2_jenis_tarif").html("");
-			
-			var isi_jenis_tarif = "<option selected='selected'>- Pilih Tarif -</option><option value='"+data.coding+"-reg-"+data.reg+"'>REG ("+data.reg+")</option><option value='"+data.coding+"-yes-"+data.yes+"'>YES ("+data.yes+")</option><option value='"+data.coding+"-oke-"+data.oke+"'>OKE ("+data.oke+")</option>";
-			
-			$("#dropship2_jenis_tarif").append(isi_jenis_tarif);
-			
-			/*
-			var total_weight = Math.ceil($('#dropship2_weight').val());
-			var total_shipping_fee = parseFloat(total_weight) * parseFloat(data.tarif_oke);
-			var total_before = $("#dropship2_total").val();
-			var total_payment = parseFloat(total_before) + parseFloat(total_shipping_fee);
-			$(".total_dropship2_ongkir").html(total_shipping_fee);
-
-			$(".total_dropship2_all").html(total_payment);	
-
-			*/	
-			
-		}, "json");	
-		
-		
-		$("#area_tarif2").hide();
-		
-		window.location = "#page_dropship2";
-		
-	}
-	
-	function kalkulasi_total_dropship2(harga_tarif)
-	{
-		
-		var harga_tarif = harga_tarif.split("-");
-		
-		var total_weight = Math.ceil($('#dropship2_weight').val());
-		var total_shipping_fee = parseFloat(total_weight) * parseFloat(harga_tarif[2]);
-		var total_before = $("#dropship2_total").val();
-		var total_payment = parseFloat(total_before) + parseFloat(total_shipping_fee);
-		$(".total_dropship2_ongkir").html(total_shipping_fee);
-
-		$(".total_dropship2_all").html(total_payment);
-		$("#dropship2_tarif_id").val(harga_tarif[0]);
-		$("#dropship2_tarif_tipe").val(harga_tarif[1]);
-
-	}
-	
-	/* End tarif dropship2 */
-
-	
 	$( document ).on( "change", "#dropship2_provinsi", function() {
 	
 		$.mobile.loading( "show" );
@@ -2276,26 +2505,71 @@ var cart_item_id = new Array();
 		}
 	});	
 	
+	$( document ).on( "change", "#dropship2_kota", function() {
 	
-	
-	
+		var customer_id = $(".customer_id").html();
+		var kota_id = $(this).val();
+		
+		if(kota_id != "")
+		{
+			
+			$.post(base_url+"/get_ship_rates_cost",{ token: token, kota_id:  kota_id},
+			   function(data_cost){
+			
+				/* check */
+				if(data_cost.status == 'Invalid Token')
+				{
+					check_token();
+				}
+			
+				if(data_cost.status == 'OFF')
+				{
+					check_status_aplikasi(data_cost.message);
+				}
+				if(data_cost.status == 'Member Not Found')
+				{
+					check_status_member_not_found();
+				}
+				if(data_cost.status == 'Member Not Active')
+				{
+					check_status_member();
+				}
+				/* end check */
+			
+				var data_rates = data_cost.shipping_fee;
+					var total_weight = $(".total_dropship2_weight").html();
+					var total_weight = Math.ceil(total_weight);
+					var total_order = $("#dropship2_total").val();
+					var total_shipping_cost =  data_rates * total_weight;
+					var total_all = parseFloat(total_shipping_cost) + parseFloat(total_order);
+					var total_shipping_cost = numeral(total_shipping_cost).format('0.00');
+					var total_all = numeral(total_all).format('0.00');
+					var total_order = numeral(total_order).format('0.00');
+					
+					$(".total_dropship2_ongkir").html(total_shipping_cost);
+					$(".total_dropship2_all").html(total_all);
+					
+			}, "json");
+		
+		}
+		else
+		{
+			$(".total_dropship2_ongkir").html("");
+			$(".total_dropship2_all").html(total_order);
+		}
+	});	
 	
 	// MY DROPSHIP ALAMAT SENDIRI
 	$( document ).on( "click", ".btn_process_dropship1", function() {
 		
 		var customer_id = $(".customer_id").html();
 		var dropship_from = $("#dropship1_from").val();
-		
 		var dropship_to = $("#dropship1_to").val();
 		var dropship_address = $("#dropship1_address").val();
 		var dropship_phone = $("#dropship1_phone").val();
 		var dropship_kodepos = $("#dropship1_kodepos").val();
 		var dropship_prov = $("#dropship1_provinsi").val();
 		var dropship_kota = $("#dropship1_kota").val();
-		
-		var dropship_tarif_id = $("#dropship1_tarif_id").val();
-		var dropship_tarif_tipe = $("#dropship1_tarif_tipe").val();
-		
 		var dropship_weight = $("#dropship1_weight").val();
 		var dropship_total = $("#dropship1_total").val();
 		var dropship_ongkir =  $(".total_dropship1_ongkir").html();
@@ -2338,7 +2612,7 @@ var cart_item_id = new Array();
 		else
 		{
 		
-			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from , to: dropship_to, prov_id: dropship_prov, kota_id: dropship_kota, tarif_id: dropship_tarif_id, tarif_tipe: dropship_tarif_tipe, address_recipient: dropship_address, phone_recipient:dropship_phone , postal_code:dropship_kodepos, ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship},
+			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from ,to: dropship_to, prov_id: dropship_prov, kota_id: dropship_kota, address_recipient: dropship_address, phone_recipient:dropship_phone , postal_code:dropship_kodepos, ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship},
 			   function(data){
 			   
 			   /* check */
@@ -2380,17 +2654,12 @@ var cart_item_id = new Array();
 		
 		var customer_id = $(".customer_id").html();
 		var dropship_from = $("#dropship2_from").val();
-		
 		var dropship_to = $("#dropship2_to").val();
 		var dropship_address = $("#dropship2_address").val();
 		var dropship_phone = $("#dropship2_phone").val();
 		var dropship_kodepos = $("#dropship2_kodepos").val();
 		var dropship_prov = $("#dropship2_provinsi").val();
 		var dropship_kota = $("#dropship2_kota").val();
-		
-		var dropship_tarif_id = $("#dropship2_tarif_id").val();
-		var dropship_tarif_tipe = $("#dropship2_tarif_tipe").val();
-		
 		var dropship_weight = $("#dropship2_weight").val();
 		var dropship_total = $("#dropship2_total").val();
 		var dropship_ongkir =  $(".total_dropship2_ongkir").html();
@@ -2431,7 +2700,7 @@ var cart_item_id = new Array();
 		}
 		else
 		{
-			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from , to: dropship_to, address_recipient: dropship_address, phone_recipient:dropship_phone, postal_code:dropship_kodepos ,prov_id: dropship_prov, kota_id: dropship_kota , tarif_id: dropship_tarif_id, tarif_tipe: dropship_tarif_tipe, ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship, tipe: order_tipe},
+			$.post(base_url+"/process_dropship", {token: token, customer_id: customer_id,from: dropship_from ,to: dropship_to, address_recipient: dropship_address, phone_recipient:dropship_phone, postal_code:dropship_kodepos ,prov_id: dropship_prov, kota_id: dropship_kota , ongkir: dropship_ongkir, total: dropship_total_all, weight: dropship_weight, order_item_id:  post_list_dropship, tipe: order_tipe},
 			   function(data){
 			   
 			   /* check */
@@ -2466,6 +2735,7 @@ var cart_item_id = new Array();
 		}	
        
 	});	
+	
 	
 	// DATA PESANAN LIST
 	
@@ -2525,7 +2795,7 @@ var cart_item_id = new Array();
 						
 						$("#page_data_order_prev").attr("rel",prev_page);
 						$("#page_data_order_prev").attr("title",order_payment);
-						$("#page_data_order_current").html(page);
+						$("#page_data_order_current").attr("value",page);
 						$("#page_data_order_next").attr("rel",next_page);
 						$("#page_data_order_next").attr("title",order_payment);
 						
@@ -2615,7 +2885,12 @@ var cart_item_id = new Array();
 	
 	// CONFIRM 
 	$( document ).on( "click", ".menu_page_confirm", function() {
+		//
+
 		var customer_id = $(".customer_id").html();
+		get_metode_pembayaran(customer_id);
+
+
 		$.post(base_url+"/get_data_order_unpaid",{token: token, customer_id: customer_id},
 		   function(data){
 		   
@@ -2623,8 +2898,66 @@ var cart_item_id = new Array();
 			$("#confirm_bank").val("");
 			$("#confirm_jumlah").val("");
 			$("#confirm_rekening").val("");
+			$("#confirm_metode").val("");
 		   
-		  /* check */
+		  /* check */ //get_payment_methode
+			if(data.status == 'Invalid Token')
+			{
+				check_token();
+			}
+		
+			if(data.status == 'OFF')
+			{
+				check_status_aplikasi(data.message);
+			}
+			if(data.status == 'Member Not Found')
+			{
+				check_status_member_not_found();
+			}
+			if(data.status == 'Member Not Active')
+			{
+				check_status_member();
+			}
+
+
+			/* end check */
+				
+		   $("#confirmation_data_order").html("<option value=''>- Nomor Pesanan -</option>");
+		   
+		   if(data.status == 'Success')
+		   {
+				for(var i=0; i<data.list.length; i++)
+				{
+					$("#confirmation_data_order").append("<option value='"+data.list[i].order_id+"'>#"+data.list[i].order_id+" - Rp."+numeral(data.list[i].total).format('0.00'));
+				}
+
+				
+		
+		   }
+		   else
+		   {
+				$("#confirmation_data_order").html("<option value=''>- Tidak ada pesanan belum Lunas -</option>");
+		   }
+		   	window.location = "#page_confirm";
+			
+		}, "json");
+	
+	});
+
+	function get_metode_pembayaran(customer_id){
+		//var customer_id = $(".customer_id").html();
+		console.log(base_url+"/get_payment_methode"+" "+token+" "+customer_id);
+		$.post(base_url+"/get_payment_methode",{token: token, customer_id: customer_id},
+		   function(data){
+		   console.log("status get methode pembayaran : "+data.status);
+
+		   $("#confirm_nama").val("");
+			$("#confirm_bank").val("");
+			$("#confirm_jumlah").val("");
+			$("#confirm_rekening").val("");
+			$("#confirm_metode").val("");
+		   
+		  /* check */ //
 			if(data.status == 'Invalid Token')
 			{
 				check_token();
@@ -2644,63 +2977,75 @@ var cart_item_id = new Array();
 			}
 			/* end check */
 				
-		   $("#confirmation_data_order").html("<option value=''>- Nomor Pesanan -</option>");
+		   $("#confirm_metode_value").html("<option value=''>- Metode Pembayaran -</option>");
 		   
 		   if(data.status == 'Success')
 		   {
 				for(var i=0; i<data.list.length; i++)
 				{
-					$("#confirmation_data_order").append("<option value='"+data.list[i].order_id+"'>#"+data.list[i].order_id+" - Rp."+numeral(data.list[i].total).format('0.00'));
+					$("#confirm_metode_value").append("<option value='"+data.list[i].id+"'>"+data.list[i].name);
 				}
 		
 		   }
 		   else
 		   {
-				$("#confirmation_data_order").html("<option value=''>- Tidak ada pesanan belum Lunas -</option>");
+				//$("#confirm_metode_value").html("<option value=''>- Metode Pembayaran -</option>");
 		   }
 		   	window.location = "#page_confirm";
 			
 		}, "json");
-	
-	});
+	}
 	
 	$( document ).on( "click", ".btn_confirm_payment", function() {
-		
+		$.mobile.loading( "show" );
+
 		var customer_id = $(".customer_id").html();
 		var order_id = $("#confirmation_data_order").val();
 		var confirm_nama = $("#confirm_nama").val();
 		var confirm_bank =  $("#confirm_bank").val();
 		var confirm_jumlah = $("#confirm_jumlah").val();
 		var confirm_rekening = $("#confirm_rekening").val();
+		var confirm_metode = $("#confirm_metode_value").val();
 		
 		//Validasi
 		if(order_id == "")
 		{
 			alert("Data 'Nomor Pesanan' belum diisi");
+			$.mobile.loading( "hide" );
 		}
 		else
 		if(confirm_nama == "")
 		{
 			alert("Data 'Nama' belum diisi");
+			$.mobile.loading( "hide" );
 		}
 		else
 		if(confirm_bank == "")
 		{
 			alert("Data 'Bank' belum diisi");
+			$.mobile.loading( "hide" );
 		}
 		else
 		if(confirm_jumlah == "")
 		{
 			alert("Data 'Jumlah' belum diiisi");
+			$.mobile.loading( "hide" );
 		}
 		else
 		if(confirm_rekening == "")
 		{
 			alert("Data 'Rekening' belum diisi");
+			$.mobile.loading( "hide" );
+		}
+		else
+		if(confirm_metode == "")
+		{
+			alert("Data 'Metode' belum diisi");
+			$.mobile.loading( "hide" );
 		}
 		else
 		{
-			$.post(base_url+"/confirm_payment",{ token: token, order_id: order_id, nama: confirm_nama, bank: confirm_bank, jumlah: confirm_jumlah, rekening: confirm_rekening, customer_id: customer_id},
+			$.post(base_url+"/confirm_payment",{ token: token, order_id: order_id, nama: confirm_nama, bank: confirm_bank, payment_methode_id: confirm_metode, jumlah: confirm_jumlah, rekening: confirm_rekening, customer_id: customer_id},
 			   function(data){
 				
 				/* check */
@@ -2732,6 +3077,7 @@ var cart_item_id = new Array();
 				window.location = "#page_dashboard";
 				
 			}, "json");
+			$.mobile.loading( "hide" );
 		}	
 		
 	});	
@@ -2804,7 +3150,7 @@ var cart_item_id = new Array();
 						}
 						
 						$("#page_message_prev").attr("rel",prev_page);
-						$("#page_message_current").html(page);
+						$("#page_message_current").attr("value",page);
 						$("#page_message_next").attr("rel",next_page);
 						
 						window.location = "#page_message";
@@ -3079,89 +3425,298 @@ var cart_item_id = new Array();
 
 	
 	//SAVE IMAGE DETAIL
-	// SAVE IMAGES //
-	function download(file_img, Folder_Name, base_download_url) {
-	//step to request a file system 
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
 
-		function fileSystemSuccess(fileSystem) {
-			var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
-			ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
-
-			var directoryEntry = fileSystem.root; // to get root path of directory
-			directoryEntry.getDirectory(Folder_Name, { create: true, exclusive: false }, onDirectorySuccess, onDirectoryFail); // creating folder in sdcard
-			var rootdir = fileSystem.root;
-			var fp = rootdir.toURL(); // Returns Fulpath of local directory
-
-			fp = fp + "/" + Folder_Name + "/" + file_img; // fullpath and name of the file which we want to give
-			// download function call
-			filetransfer(download_link, fp);
-		}
-
-		function onDirectorySuccess(parent) {
-			// Directory created successfuly
-		}
-
-		function onDirectoryFail(error) {
-			//Error while creating directory
-			alert("Unable to create new directory: " + error.code);
-		}
-
-		function fileSystemFail(evt) {
-			//Unable to access file system
-			alert(evt.target.error.code);
-		 }
+	function saveImageToPhone(url, success, error) {
+	    var canvas, context, imageDataUrl, imageData;
+	    var img = new Image();
+	    img.onload = function() {
+	        canvas = document.createElement('canvas');
+	        canvas.width = img.width;
+	        canvas.height = img.height;
+	        context = canvas.getContext('2d');
+	        context.drawImage(img, 0, 0);
+	        try {
+				$.mobile.loading( "show" );
+	            imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+	            imageData = imageDataUrl.replace(/data:image\/jpeg;base64,/, '');
+	            cordova.exec(
+	                success,
+	                error,
+	                'Canvas2ImagePlugin',
+	                'saveImageDataToLibrary',
+	                [imageData, url]
+	            );
+	        }
+	        catch(e) {
+	            error(e.message);
+	        }
+	    };
+	    try {
+	        img.src = url;
+	    }
+	    catch(e) {
+	        error(e.message);
+	    }
 	}
-	
-	function filetransfer(download_link, fp) {
-	var fileTransfer = new FileTransfer();
-	// File download function with URL and local path
-	
-	fileTransfer.download(
-			download_link,
-			fp,
-			function(entry) {
-				alert("Gambar berhasil disimpan");
-				console.log("download complete: " + entry.toURL());
+
+	// SAVE IMAGE 3 //
+	function download_lagi2(url){
+		$.mobile.loading( "show" );
+
+		setTimeout(function() {
+		      // Do something after 3 seconds
+		      var success = function(msg){
+			    console.info(msg);
+			    alert('message: '          + msg);
 				$.mobile.loading( "hide" );
-			},
-			function(error) {
-				alert("Penyimpanan gambar gagal: Error Code = " + error.code);
-				console.log("download error source " + error.source);
-				console.log("download error target " + error.target);
-				console.log("upload error code" + error.code);
+			};
+
+			var error = function(err){
+			    console.error(err);
+			    alert('message: '          + err);
 				$.mobile.loading( "hide" );
-			},
-			false,
-			{
-				headers: {
-					"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-				}
-			}
-		);
+			};
+
+			saveImageToPhone(url, success, error);
+		}, 3000);
+/*
+		*/
 	}
-	// END ALTERNATIVE //
+
+
+	// // SAVE IMAGE 2 //
+	// function download_lagi(file_img, Folder_Name, base_download_url) {
+	// 	// onSuccess Callback
+	// 	// This method accepts a JSON object, which contains the
+	// 	// message response
+	// 	//
+	// 	var onSuccess = function(data) {
+	// 	    alert('message: '          + data.message);
+	// 	};
+
+	// 	// onError Callback receives a json object
+	// 	//
+	// 	function onError(error) {
+	// 	    alert('message: '    + error.message);
+	// 	}
+
+	// 	window.cordova.plugins.FileOpener.openFile("http://tokomobile.co.id/demo2.1/media/images/large/"+file_img,onSuccess, onError);
+
+	// }
+	// // SAVE IMAGES //
+	// function download(file_img, Folder_Name, base_download_url) {
+	// //step to request a file system 
+	// 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
+
+	// 	function fileSystemSuccess(fileSystem) {
+	// 		var download_link = encodeURI(base_download_url+"download_img.php?file_img="+file_img);
+	// 		ext = download_link.substr(download_link.lastIndexOf('.') + 1); //Get extension of URL
+
+	// 		var directoryEntry = fileSystem.root; // to get root path of directory
+	// 		directoryEntry.getDirectory(Folder_Name, { create: true, exclusive: false }, onDirectorySuccess, onDirectoryFail); // creating folder in sdcard
+	// 		var rootdir = fileSystem.root;
+	// 		var fp = rootdir.toURL(); // Returns Fulpath of local directory
+
+	// 		var root_external = "file:///storage/sdcard1/";
+	// 		fp = fp + "/" + Folder_Name + "/" + file_img; // fullpath and name of the file which we want to give
+	// 		alert(fp);
+	// 		// download function call
+	// 		filetransfer(download_link, fp);
+
+	// 		var onSuccess = function(data) {
+	// 	    	alert('message: '          + data.message);
+	// 		};
+
+	// 		// onError Callback receives a json object
+	// 		//
+	// 		function onError(error) {
+	// 		    alert('message: '    + error.message);
+	// 		}
+	// 		//window.cordova.plugins.FileOpener.galleryAddPic(fp + "/" + Folder_Name,onSuccess, onError);
+	// 	}
+
+	// 	function onDirectorySuccess(parent) {
+	// 		// Directory created successfuly
+	// 	}
+
+	// 	function onDirectoryFail(error) {
+	// 		//Error while creating directory
+	// 		alert("Unable to create new directory: " + error.code);
+	// 	}
+
+	// 	function fileSystemFail(evt) {
+	// 		//Unable to access file system
+	// 		alert(evt.target.error.code);
+	// 	 }
+	// }
 	
+	// function filetransfer(download_link, fp) {
+	// var fileTransfer = new FileTransfer();
+	// // File download function with URL and local path
+	
+	// fileTransfer.download(
+	// 		download_link,
+	// 		fp,
+	// 		function(entry) {
+	// 			alert("Gambar berhasil disimpan di "+fp);
+	// 			console.log("download complete: " + entry.toURL());
+	// 			$.mobile.loading( "hide" );
+	// 			//window.cordova.plugins.FileOpener.refreshGallery(fp,onSuccess, onError);
+	// 		},
+	// 		function(error) {
+	// 			alert("Penyimpanan gambar gagal: Error Code = "+fp+" "+ error.code);
+	// 			console.log("download error source " + error.source);
+	// 			console.log("download error target " + error.target);
+	// 			console.log("upload error code" + error.code);
+	// 			$.mobile.loading( "hide" );
+	// 		},
+	// 		false,
+	// 		{
+	// 			headers: {
+	// 				"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+	// 			}
+	// 		}
+	// 	);
+	// }
+	// // END ALTERNATIVE //
+
 	// Exit 
 	function onLoad() {
-                document.addEventListener('deviceready', deviceReady, false);
-            }
+        document.addEventListener('deviceready', deviceReady, false);
+    }
 
-            function deviceReady() {
-                document.addEventListener('backbutton', backButtonCallback, false);
-            }
+    function deviceReady() {
+        document.addEventListener('backbutton', backButtonCallback, false);
+    }
 
-             function backButtonCallback() {
-				navigator.notification.confirm('Keluar dari aplikasi?',confirmCallback);
-             }
-             function confirmCallback(buttonIndex) {
-                if(buttonIndex == 1) {
-                 navigator.app.exitApp();
-            return true;
-            }
-            else {
-            return false;
-        }
-   }
+	function backButtonCallback() {
+		//alert(current_page);
+		if(current_page=="page_dashboard"){
+	    	//navigator.app.exitApp();
+	    	var retVal = confirm("Keluar dari aplikasi?");
+		    if( retVal == true ){
+		    	navigator.app.exitApp();
+		    	return true;
+		    }else{
+		    	return false;
+		    }
+    		//navigator.notification.confirm('Keluar dari aplikasi?',confirmCallback);
+	    }else if(current_page=="page_notifikasi"){
+	    	//navigator.app.exitApp();
+	    	var retVal = confirm("Keluar dari aplikasi?");
+		    if( retVal == true ){
+		    	navigator.app.exitApp();
+		    	return true;
+		    }else{
+		    	return false;
+		    }
+    		//navigator.notification.confirm('Keluar dari aplikasi?',confirmCallback);
+	    }else if(current_page=="page_product_category"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_product"){
+
+	    	window.location = "#page_product_category";
+
+	    }else if(current_page=="page_product_po"){
+
+	    	window.location = "#page_product_category";
+
+	    }else if(current_page=="page_product_ready"){
+
+	    	window.location = "#page_product_category";
+
+	    }else if(current_page=="page_detail"){
+
+	    	window.location = "#page_product";
+
+	    }else if(current_page=="page_myorder"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_dropship1"){
+
+	    	window.location = "#page_myorder";
+
+	    }else if(current_page=="page_dropship2"){
+
+	    	window.location = "#page_myorder";
+
+	    }else if(current_page=="page_data_order"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_data_order_list"){
+
+	    	window.location = "#page_data_order";
+
+	    }else if(current_page=="page_data_order_detail"){
+
+	    	window.location = "#page_data_order_list";
+
+	    }else if(current_page=="page_confirm"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_message"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_info"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_settings"){
+
+	    	window.location = "#page_dashboard";
+
+	    }else if(current_page=="page_settings_profile"){
+
+	    	window.location = "#page_settings";
+
+	    }else if(current_page=="page_register"){
+
+	    	window.location = "#page_login";
+
+	    }else if(current_page=="page_login"){
+	    	//navigator.app.exitApp();
+	    	var retVal = confirm("Keluar dari aplikasi?");
+		    if( retVal == true ){
+		    	navigator.app.exitApp();
+		    	return true;
+		    }else{
+		    	return false;
+		    }
+    		//navigator.notification.confirm('Keluar dari aplikasi?',confirmCallback);
+	    }else{
+	    	//window.history.back(); 
+	    }
+		
+	}
+
+    function confirmCallback(buttonIndex) {
+       if(buttonIndex == 1) {
+	       	navigator.app.exitApp();
+	    	return true;
+	    }else {
+	    	return false;
+		}
+   	}
+
+
+   document.addEventListener("backbutton", onBackKeyDown, false);
+
+	/*function onBackKeyDown(e) {
+	    e.preventDefault();
+		//alert(current_page);
+	    // Handle the back button
+	    if(current_page=="page_dashboard"){
+	    	//navigator.app.exitApp();
+    		navigator.notification.confirm("Are you sure you want to exit?", confirmCallback, "Confirmation", "Yes,No");
+	    }else{
+	    	window.history.back(); 
+	    }
+	}*/
 	
 	
