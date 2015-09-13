@@ -1,18 +1,19 @@
-
-	var shop_name = "Cut Grosir"; // NAMA TOKO ONLINE
-	var domain = "http://cutegrosir-tanahabang.com/mobile/"; // DOMAIN URL ADMIN
+	var shop_name = "Ella Ufaira Shop"; // NAMA TOKO ONLINE
+	var domain = "http://order-request.websiteplace.my.id/"; // DOMAIN URL ADMIN
 	var admin_url = domain;
 	
 	var base_url = domain+"_api_/android"; // URL API
 	var base_url_media = admin_url+"media"; // DIREKTORI PENYIMPANAN IMAGE DI HOSTING
-	var dir_image = "Pictures/cutegrosir"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
-	var token = "84db4346d50d34da8d9d5f77805dbdc7"; // ISI DENGAN TOKEN 
+	var dir_image = "Pictures/Ella-Ufaira-Shop"; // DIREKTORI PENYIMPANAN IMAGE DI SD CARD
+	var token = "7cd953587cd0cafb5a3fcd7fe83aab60"; // ISI DENGAN TOKEN 
 	
-var cart_item_id = new Array();
+	var cart_item_id = new Array();
 	var cart_item_qty = new Array();
 	var cart_item_price = new Array();
 	var cart_item_subtotal = new Array();
 	var cart_item_weight = new Array();
+	
+	$.datepicker.formatDate( "yy-mm-dd" );
 	
 	$( document ).on( "click", ".show-page-loading-msg", function() {
 		var $this = $( this ),
@@ -28,41 +29,6 @@ var cart_item_id = new Array();
 				textonly: textonly,
 				html: html
 		});
-	})
-
-	// CHECK NEW MESSAGE
-	$( document ).on( "click", ".check_new_message", function() {
-		var login_customer_id = localStorage.getItem('Customer_id');
-		$.post(base_url+"/get_total_unread_message", { token: token, customer_id: login_customer_id},
-		   function(data){
-			
-			/* check */
-			if(data.status == 'Invalid Token')
-			{
-				check_token();
-			}
-		
-			if(data.status == 'OFF')
-			{
-				check_status_aplikasi(data.message);
-			}
-			
-			if(data.status == 'Member Not Active')
-			{
-				check_status_member();
-			}
-			/* end check */ 		
-			
-			if(data.total > 0) 
-			{
-				$(".unread_message").html(data.total);
-			}
-			else
-			{
-				$(".unread_message").html('');
-			}	
-			 
-		}, "json");
 	});
 
 	// CHECK AUTH
@@ -74,8 +40,7 @@ var cart_item_id = new Array();
 		var login_customer_email = localStorage.getItem('Customer_email');
 		
 		if (login_status) {
-			
-			//unread message check
+
 			$.post(base_url+"/get_total_unread_message", {token: token, customer_id: login_customer_id},
 		   	function(data){
 			 
@@ -131,14 +96,12 @@ var cart_item_id = new Array();
 				
 			 
 			 
-			}, "json");
-			
-			
-			
+			}, "json");	
+
 		}
 		else
 		{
-			window.location = "#page_login";
+			window.location = "#page_before_login";
 		}
 		
 		onLoad();
@@ -238,7 +201,7 @@ var cart_item_id = new Array();
 	});	
 	
 	// REGISTER PAGE
-	$( document ).on( "click", "#btn_page_register", function() {
+	$( document ).on( "click", "#btn_page_login", function() {
 		$.post(base_url+"/get_ship_rates_prov",{token: token}, 
 			   function(data_prov){
 					
@@ -2927,4 +2890,5 @@ var cart_item_id = new Array();
         }
    }
 	
+
 	

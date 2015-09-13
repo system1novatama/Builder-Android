@@ -17,7 +17,9 @@
   <script type="text/javascript" src="jquery.mobile-1.4.2.min.js"></script>
   <script type="text/javascript" src="numeral.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
- 
+	<link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
+	<script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+	<script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>
   <style>
 	.bg-pink {
 		background: #f5f5f5;
@@ -87,7 +89,16 @@
 		box-shadow:5px 10px 15px #000;
 		border-radius: 5px;
 	}	
-	
+	.ui-datepicker table th{
+	background-color:#0066FF;
+	}
+	.ui-datepicker table {
+	background-color:#fff;
+	}
+	.ui-datepicker.ui-corner-all, .ui-datepicker .ui-datepicker-header.ui-corner-all {
+    background-color: #fff;
+	border: 1px solid;
+	}
   </style>
   
 </head>
@@ -115,7 +126,40 @@
 	</div>
 	</div>	
 </div>
-
+<!-- BEFORE LOGIN --> 
+<div data-role="page" data-control-title="Before Login" data-theme="b" id="page_before_login" >
+    
+	 <div data-theme="b" data-role="header">
+       <div data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn ui-icon-home ui-btn-b ui-btn-icon-top">Ella Ufairah</a></li>
+			</ul>
+		</div><!-- /navbar -->
+    </div>
+	
+    <div role="main" class="ui-content">
+		<div data-controltype="image">
+			<center> <h2> <img width="100%" src="img/logo.png"/></h2></center>  
+		</div>
+		<div data-role="navbar">
+			<ul>
+			<li>
+				<a href="#page_login" id="menu_page_login" rel="1" class="ui-icon-user ui-btn-a ui-btn-icon-top btn_page_login show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Login Member</a>
+			</li>
+		</ul>
+		</div>
+		
+		<div data-role="navbar">
+			<ul>
+			<li>
+				<a href="#" id="#page_register" rel="1" class="ui-icon-user ui-btn-a ui-btn-icon-top btn_page_register show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Register</a>
+			</li>
+		</ul>
+		</div>	
+		
+		
+    </div>
+</div>
 <!-- LOGIN -->
 <div data-role="page" data-control-title="Login" id="page_login" >
     <div data-theme="b" data-role="header">
@@ -242,6 +286,78 @@
 		</div><!-- /navbar -->
     </div>
 </div>
+<!-- ORDER BARANG -->
+<div data-role="page" data-control-title="Order Barang" id="page_order_barang" >
+    <div data-theme="b" data-role="header">
+        <h1 class="ui-title">
+            Order Barang / Produk
+        </h1>
+    </div>
+    <div role="main" class="ui-content">
+        
+		<div id="order_message"></div>
+        <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput1">
+                Pesanan Untuk Tanggal
+            </label>
+			<input data-role="date" type="text" name="order_date" id="order_date" placeholder="Untuk Tanggal" value="">
+        </div>
+		<div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput2">
+                Nama Barang
+            </label>
+            <input name="order_produk" id="order_produk" placeholder="Nama Produk / Barang" value="" type="email">
+        </div>
+		<div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput2">
+                Merek Barang
+            </label>
+            <input name="order_merek" id="order_merek" placeholder="Nama Merek Produk / Barang" value="" type="text">
+        </div>
+        <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput2">
+              Kode Barang
+            </label>
+            <input name="order_kode" id="order_kode" placeholder="Kode Produk / Barang" value="" type="text">
+        </div>
+        <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput2">
+              Upload File
+            </label>
+            <input name="order_kode" id="order_kode" placeholder="Kode Produk / Barang" value="" type="file">
+        </div>
+        <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput2">
+              Jumlah Barang
+            </label>
+            <input name="order_qty" id="order_qty" placeholder="Jumlah Yang di Pesan" value="" type="text">
+        </div>
+        <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput1">
+                Alamat Pengiriman
+            </label>
+           <textarea name="order_alamat" id="order_alamat" rows="5" placeholder="Alamat Pengiriman"></textarea>
+        </div>
+		
+        <div class="ui-field-contain white" data-controltype="textinput">
+            <label for="textinput1">
+                Notes
+            </label>
+           <textarea name="order_notes" id="order_notes" rows="5" placeholder="Notes / Catatan"></textarea>
+        </div>
+		
+		<button id="order-button" class="ui-btn ui-btn-b ui-icon-arrow-r ui-btn-icon-right">ORDER</button>
+       
+    </div>
+	
+	<div data-theme="a" data-role="footer" class="back-footer">
+       <div data-role="navbar">
+			<ul>
+				<li><a href="#page_dashboard" class="ui-btn ui-btn-a ui-icon-arrow-l  ui-btn-icon-top" id="btn_page_register">Cancel</a></li>
+			</ul>
+		</div><!-- /navbar -->
+    </div>
+</div>
 
 <!-- LOADING -->
 <div data-role="page" data-control-title="Login" id="page_loading" >
@@ -275,7 +391,7 @@
 		<div data-role="navbar">
 			<ul>
 			<li>
-				<a href="#" id="menu_page_product_category" rel="1" class="ui-icon-grid ui-btn-a ui-btn-icon-top menu_page_product_category show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Katalog Ready Stock</a>
+				<a href="#page_order_barang" id="menu_order_barang" rel="1" class="ui-icon-grid ui-btn-a ui-btn-icon-top menu_order_barang show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Order Barang</a>
 			</li>
 		</ul>
 		</div>
@@ -283,65 +399,10 @@
 		<div data-role="navbar">
 			<ul>
 			<li>
-				<a href="#" id="menu_page_product_category_po" rel="1" class="ui-icon-grid ui-btn-a ui-btn-icon-top menu_page_product_category_po show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Katalog Pre Order</a>
+				<a href="#" id="menu_daftar_pesanan" rel="1" class="ui-icon-grid ui-btn-a ui-btn-icon-top menu_daftar_pesanan show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Daftar Pesanan</a>
 			</li>
 		</ul>
 		</div>
-		
-		<div data-role="navbar">
-			<ul>
-			<li>
-				<a href="#" class="ui-icon-bars ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_myorder show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">List Pesanan Barang</a>
-			</li>
-		</ul>
-		</div>
-		
-		<div data-role="navbar">
-			<ul>
-			<li>
-				<a href="#page_data_order" class="ui-icon-bars ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_data_pesanan" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Data Pesanan</a>
-			</li>
-		</ul>
-		</div>
-		
-		<div data-role="navbar">
-			<ul>	
-			<li>
-				<a href="#" class="ui-icon-check ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_confirm" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Konfirmasi Pembayaran</a>
-			</li>
-			</ul>
-		</div>
-		<div data-role="navbar">
-			<ul>	
-			<li>
-				<a href="#"  class="ui-icon-mail ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_message" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true" rel="1">Kotak Masuk <font color="#b70000"><span class="unread_message"></span></font></a>
-			</li>
-			</ul>
-		</div>
-		<div data-role="navbar">
-			<ul>	
-			<li>
-				<a href="#page_info" class="ui-icon-user ui-btn-a ui-btn-icon-top show-page-loading-msg menu_page_info" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Info & Rekening</a>
-			</li>
-			</ul>
-		</div>
-		
-		<div data-role="navbar">
-			<ul>	
-			<li>
-				<a href="#page_settings" class="ui-icon-gear ui-btn-a ui-btn-icon-top show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Pengaturan</a>
-			</li>
-			</ul>
-		</div>
-		
-		<div data-role="navbar">
-			<ul>	
-			<li>
-				<a href="#page_update" class="ui-icon-refresh ui-btn-a ui-btn-icon-top show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Update</a>
-			</li>
-			</ul>
-		</div>
-		
     </div>
 	
 	
